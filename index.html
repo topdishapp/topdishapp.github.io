@@ -672,13 +672,13 @@
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.16 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  // Fragment landings / conservative observers: force-reveal whatever is already on screen.
-  addEventListener('load', () => setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (r.top < innerHeight && r.bottom > 0) el.classList.add('in');
-    });
-  }, 150));
+  // Fragment landings / conservative observers: force-reveal whatever is on screen.
+  const revealNow = () => document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) el.classList.add('in');
+  });
+  revealNow();
+  [300, 900, 2000].forEach(t => setTimeout(revealNow, t));
 
   // Gentle hero-phone parallax
   const hp = document.getElementById('heroPhone');
