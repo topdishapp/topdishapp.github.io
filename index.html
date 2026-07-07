@@ -7,7 +7,7 @@
 <meta name="description" content="Top Dish reads millions of real reviews so the most-loved dish sits at the top of every menu. NYC's 18,000+ restaurants, mapped dish-first.">
 <meta property="og:title" content="Top Dish">
 <meta property="og:description" content="Every menu in the city, distilled to the dishes actually worth ordering.">
-<meta property="og:image" content="https://topdishapp.github.io/assets/02_detail_bungalow.png">
+<meta property="og:image" content="https://topdishapp.github.io/assets/02_detail_bungalow_1140.png">
 <meta property="og:url" content="https://topdishapp.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3A2D'/%3E%3Cpath d='M14 40a18 18 0 0 1 36 0z' fill='%23F6F1E3'/%3E%3Crect x='10' y='41' width='44' height='4' rx='2' fill='%23C8A95C'/%3E%3Cpath d='M26 22l3-7 3 4 3-4 3 7z' fill='%23E9B949'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,8 +73,8 @@
   .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden;
            box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); line-height:0; }
   .phone img { width:100%; height:auto; display:block; }
-  .hero-phone .phone { width:min(320px, 78vw); transform:rotate(4deg); will-change:transform; }
-  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { transform:rotate(0); width:min(280px,74vw); } }
+  .hero-phone .phone { width:min(380px, 80vw); will-change:transform; }
+  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(300px,74vw); } }
 
   /* ---------- sections ---------- */
   section { padding:110px 28px; }
@@ -106,7 +106,7 @@
   .shot:nth-child(2){ margin-top:56px; } .shot:nth-child(3){ margin-top:20px; }
   .shot:nth-child(4){ margin-top:72px; } .shot:nth-child(5){ margin-top:36px; }
   .shot .phone { border-radius:40px; border-width:7px; transition:transform .45s cubic-bezier(.22,.9,.3,1), box-shadow .45s; }
-  .shot .phone:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 50px 90px rgba(0,0,0,.28); }
+  .shot .phone:hover { transform:translateY(-10px); box-shadow:0 50px 90px rgba(0,0,0,.28); }
   .shot figcaption { text-align:center; margin-top:16px; font-size:.85rem; font-weight:600; color:var(--sub); }
 
   /* series */
@@ -168,7 +168,7 @@
       <p class="hero-note reveal" style="--d:.32s">iPhone · New York City · free</p>
     </div>
     <div class="hero-phone reveal" style="--d:.2s">
-      <div class="phone" id="heroPhone"><img src="assets/02_detail_bungalow.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
+      <div class="phone" id="heroPhone"><img srcset="assets/02_detail_bungalow_500.png 500w, assets/02_detail_bungalow_760.png 760w, assets/02_detail_bungalow_1140.png 1140w" sizes="(max-width: 880px) 74vw, 380px" src="assets/02_detail_bungalow_760.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
     </div>
   </div>
 </header>
@@ -203,10 +203,10 @@
       <p class="body reveal" style="--d:.12s">The most-sighted dishes are crowned right on the map. Open any spot and the menu is already ranked.</p>
     </div>
     <div class="gallery">
-      <figure class="shot reveal"><div class="phone"><img loading="lazy" src="assets/01_home_map.png" alt="Map of New York with crowned top dishes and a nearby list" width="660" height="1434"></div><figcaption>Crowned on the map</figcaption></figure>
-      <figure class="shot reveal" style="--d:.1s"><div class="phone"><img loading="lazy" src="assets/07_detail_katz.png" alt="Katz's Delicatessen page with pastrami at 10,093 sightings" width="660" height="1434"></div><figcaption>10,093 sightings deep</figcaption></figure>
-      <figure class="shot reveal" style="--d:.2s"><div class="phone"><img loading="lazy" src="assets/04_detail_carbone.png" alt="Carbone page with spicy rigatoni ranked first" width="660" height="1434"></div><figcaption>Field notes on every dish</figcaption></figure>
-      <figure class="shot reveal" style="--d:.3s"><div class="phone"><img loading="lazy" src="assets/10_checklist_pizza.png" alt="The Pizza Canon checklist with a numbered route map" width="660" height="1434"></div><figcaption>Trails worth finishing</figcaption></figure>
+      <figure class="shot reveal"><div class="phone"><img loading="lazy" srcset="assets/01_home_map_500.png 500w, assets/01_home_map_760.png 760w, assets/01_home_map_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/01_home_map_760.png" alt="Map of New York with crowned top dishes and a nearby list" width="660" height="1434"></div><figcaption>Crowned on the map</figcaption></figure>
+      <figure class="shot reveal" style="--d:.1s"><div class="phone"><img loading="lazy" srcset="assets/07_detail_katz_500.png 500w, assets/07_detail_katz_760.png 760w, assets/07_detail_katz_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/07_detail_katz_760.png" alt="Katz's Delicatessen page with pastrami at 10,093 sightings" width="660" height="1434"></div><figcaption>10,093 sightings deep</figcaption></figure>
+      <figure class="shot reveal" style="--d:.2s"><div class="phone"><img loading="lazy" srcset="assets/04_detail_carbone_500.png 500w, assets/04_detail_carbone_760.png 760w, assets/04_detail_carbone_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/04_detail_carbone_760.png" alt="Carbone page with spicy rigatoni ranked first" width="660" height="1434"></div><figcaption>Field notes on every dish</figcaption></figure>
+      <figure class="shot reveal" style="--d:.3s"><div class="phone"><img loading="lazy" srcset="assets/10_checklist_pizza_500.png 500w, assets/10_checklist_pizza_760.png 760w, assets/10_checklist_pizza_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/10_checklist_pizza_760.png" alt="The Pizza Canon checklist with a numbered route map" width="660" height="1434"></div><figcaption>Trails worth finishing</figcaption></figure>
     </div>
   </div>
 </section>
@@ -224,7 +224,7 @@
       </div>
     </div>
     <div class="reveal" style="--d:.15s">
-      <div class="phone"><img loading="lazy" src="assets/09_explore_series.png" alt="Explorer Series screen with curated dish checklists" width="660" height="1434"></div>
+      <div class="phone"><img loading="lazy" srcset="assets/09_explore_series_500.png 500w, assets/09_explore_series_760.png 760w, assets/09_explore_series_1140.png 1140w" sizes="(max-width: 880px) 74vw, 290px" src="assets/09_explore_series_760.png" alt="Explorer Series screen with curated dish checklists" width="660" height="1434"></div>
     </div>
   </div>
 </section>
@@ -260,7 +260,7 @@
   if (hp && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     addEventListener('scroll', () => {
       const y = Math.min(scrollY, innerHeight);
-      hp.style.transform = `rotate(4deg) translateY(${y * 0.12}px)`;
+      hp.style.transform = `translateY(${y * 0.1}px)`;
     }, { passive: true });
   }
 
