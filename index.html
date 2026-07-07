@@ -17,7 +17,7 @@
   :root {
     --green-1:#28503C; --green-2:#1F3A2D; --green-3:#112218;
     --cream:#F6F1E3; --paper:#F6F1E8; --ink:#1B1714; --sub:#857C6E;
-    --gold:#C8A95C; --gold-ink:#C2912F; --red:#9E2B25; --hairline:#EDEAE2;
+    --gold:#C8A95C; --gold-ink:#C2912F; --red:#9E2B25; --green:#1F8A50; --hairline:#EDEAE2;
     --disp:'Plus Jakarta Sans',-apple-system,sans-serif;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -32,21 +32,24 @@
   .cm-base { background:#C8A95C; border-radius:999px; }
   .cm-shadow { background:rgba(0,0,0,.20); border-radius:50%; filter:blur(1px); }
 
-  /* ---------- hero ---------- */
   header { position:relative; min-height:100svh; display:flex; align-items:center;
            background:radial-gradient(120% 90% at 50% 18%, var(--green-1) 0%, var(--green-2) 45%, var(--green-3) 100%); overflow:hidden; }
-  .corner-badge { position:absolute; top:22px; right:24px; z-index:10; display:inline-flex; align-items:center; gap:10px;
+  .brandmark { position:absolute; top:20px; left:24px; z-index:10; display:flex; align-items:center; gap:10px;
+               color:var(--cream); text-decoration:none; }
+  .brandmark img { width:32px; height:32px; border-radius:24%; }
+  .brandmark span { font-family:var(--disp); font-weight:700; font-size:1.08rem; white-space:nowrap; }
+  .corner-badge { position:absolute; top:18px; right:24px; z-index:10; display:inline-flex; align-items:center; gap:10px;
     background:#000; color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.32); border-radius:12px;
     padding:8px 16px 8px 13px; transition:transform .25s, box-shadow .25s; }
   .corner-badge:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.35); }
   .corner-badge svg { width:19px; height:19px; }
   .corner-badge .b1 { display:block; font-size:.52rem; letter-spacing:.04em; opacity:.85; }
-  .corner-badge .b2 { display:block; font-family:var(--disp); font-size:.92rem; font-weight:700; margin-top:0; }
-  @media (max-width:640px){ .corner-badge { top:14px; right:14px; } }
+  .corner-badge .b2 { display:block; font-family:var(--disp); font-size:.92rem; font-weight:700; }
+  @media (max-width:640px){ .corner-badge { top:14px; right:14px; } .brandmark { top:16px; left:16px; } .brandmark span { font-size:1rem; } }
 
-  .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:96px 28px 56px; width:100%;
+  .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:110px 28px 56px; width:100%;
                display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
-  @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:88px; } }
+  @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:96px; } }
   .cloche { display:inline-block; margin-bottom:34px; filter:drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
   @media (max-width:880px){ .cloche { margin:0 auto 30px; } }
   h1 { font-family:var(--disp); font-weight:800; color:var(--cream); font-size:clamp(2.4rem, 5.2vw, 3.9rem); line-height:1.08; letter-spacing:-.02em; }
@@ -65,16 +68,17 @@
   .ghost-btn:hover { background:rgba(246,241,227,.08); border-color:rgba(246,241,227,.6); }
   .hero-note { margin-top:18px; color:rgba(255,255,255,.42); font-size:.8rem; }
 
-  /* ---------- phones ---------- */
+  /* ---------- phones (content designed at 380px, JS scales to fit) ---------- */
   .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden; position:relative;
            box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); }
   .hero-phone { display:flex; justify-content:center; }
   .hero-phone .phone { width:min(380px, 80vw); transform:rotate(3deg); will-change:transform; }
-  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(320px,80vw); transform:rotate(2deg); } }
+  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(330px,82vw); transform:rotate(2deg); } }
   .phone-cap { text-align:center; color:rgba(255,255,255,.45); font-size:.78rem; margin-top:16px; }
 
-  .screen { position:relative; height:calc(min(380px,80vw) * 2.12); max-height:806px; overflow:hidden; background:#E8E4DA;
-            border-radius:43px; font-family:'Inter',sans-serif; line-height:1.45; user-select:none; }
+  .screen { position:relative; height:780px; overflow:hidden; background:#E8E4DA; border-radius:43px;
+            font-family:'Inter',sans-serif; line-height:1.45; user-select:none; }
+  .fit { position:absolute; top:0; left:0; width:362px; height:780px; transform-origin:top left; }
   .mapstrip { position:absolute; top:0; left:0; width:100%; display:block; }
   .sheet { position:absolute; top:58px; left:0; right:0; bottom:0; background:#fff; border-radius:24px 24px 0 0;
            overflow-y:auto; overscroll-behavior:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch;
@@ -85,15 +89,16 @@
              border-radius:3px; background:rgba(255,255,255,.9); box-shadow:0 1px 4px rgba(0,0,0,.2); }
   .grabber.dark { background:#D8D2C6; box-shadow:none; }
 
-  .shero { position:relative; height:252px; }
+  .shero { position:relative; height:246px; }
   .shero img { width:100%; height:117%; object-fit:cover; object-position:center 32%; display:block; border-radius:24px 24px 0 0;
                -webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 98%); mask-image:linear-gradient(to bottom,#000 60%,transparent 98%); pointer-events:none; }
   .chip { position:absolute; top:14px; width:29px; height:29px; border-radius:50%; background:rgba(0,0,0,.5);
           border:.5px solid rgba(255,255,255,.5); color:#fff; font-size:.78rem; display:flex; align-items:center; justify-content:center; }
   .cl { left:13px; } .cr { right:13px; }
+  .backchip { left:13px; z-index:6; font-size:1.15rem; cursor:pointer; padding-bottom:2px; }
   .stitle { padding:0 17px 4px; margin-top:-30px; position:relative; }
   .srow { display:flex; align-items:flex-end; justify-content:space-between; gap:8px; }
-  .stitle h3 { font-family:var(--disp); font-weight:800; font-size:1.32rem; line-height:1.15; color:var(--ink); letter-spacing:-.01em; }
+  .stitle h3 { font-family:var(--disp); font-weight:800; font-size:1.3rem; line-height:1.15; color:var(--ink); letter-spacing:-.01em; }
   .acts { display:flex; gap:5px; flex:none; }
   .act { width:29px; height:29px; border-radius:50%; background:#fff; border:1px solid var(--hairline);
          box-shadow:0 2px 6px rgba(0,0,0,.07); color:var(--red); display:flex; align-items:center; justify-content:center; }
@@ -113,7 +118,7 @@
   .pring.goldr { border-color:var(--gold); color:var(--gold-ink); width:58px; height:58px; font-size:1.05rem; }
   .pring.bronze { border-color:#C08F5F; color:#A5713C; }
   .pod b { display:block; font-size:.62rem; font-weight:700; color:var(--ink); line-height:1.25; min-height:2.4em; font-family:var(--disp); }
-  .pod em { font-style:normal; font-size:.53rem; font-weight:700; color:#1F8A50; letter-spacing:.04em; }
+  .pod em { font-style:normal; font-size:.53rem; font-weight:700; color:var(--green); letter-spacing:.04em; }
 
   .dlist { padding:8px 0 0; }
   .drow { border-top:1px solid #F3F0E9; padding:0 17px; cursor:pointer; }
@@ -121,7 +126,7 @@
   .drank { font-size:.65rem; color:#A59B8B; font-weight:600; width:11px; }
   .dname { font-family:var(--disp); font-weight:700; font-size:.95rem; color:var(--ink); flex:1; }
   .dnum { font-family:var(--disp); font-weight:700; font-size:.95rem; color:var(--ink); text-align:right; }
-  .dnum em { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:.56rem; font-weight:700; color:var(--gold-ink); }
+  .dnum em { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:.56rem; font-weight:700; color:var(--green); }
   .dbody { max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.22,.9,.3,1); }
   .drow.open .dbody { max-height:600px; }
   .dbody-in { padding:2px 0 15px; }
@@ -135,14 +140,13 @@
                 padding:6px 13px; border-radius:999px; pointer-events:none; transition:opacity .5s; backdrop-filter:blur(6px); }
   .scroll-cue.hide { opacity:0; }
 
-  /* drawer (home) */
   .sheet.drawer { top:44%; border-radius:26px 26px 0 0; }
   .dtitle { font-family:var(--disp); font-weight:800; font-size:1.05rem; padding:16px 16px 0; }
   .dtitle span { color:var(--sub); font-weight:600; font-size:.8rem; }
   .dsearch { margin:10px 16px 0; background:#F4EFE7; border-radius:12px; padding:9px 12px; font-size:.74rem; color:#A59B8B; }
-  .dchips { display:flex; gap:6px; padding:10px 16px 4px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
+  .dchips { display:flex; gap:6px; padding:10px 16px 4px; overflow-x:auto; scrollbar-width:none; }
   .dchips::-webkit-scrollbar { display:none; }
-  .dchip { flex:none; font-size:.68rem; font-weight:700; padding:6px 11px; border-radius:999px; background:#F4EFE7; color:var(--ink); cursor:pointer; border:1px solid transparent; }
+  .dchip { flex:none; font-size:.68rem; font-weight:700; padding:6px 11px; border-radius:999px; background:#F4EFE7; color:var(--ink); cursor:pointer; }
   .dchip.on { background:#111; color:#fff; }
   .hlist { padding:4px 0 20px; }
   .hrow { display:flex; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid #F3F0E9; }
@@ -155,7 +159,27 @@
   .hcrown { width:10px; height:9px; flex:none; }
   .hdist { font-size:.64rem; color:var(--sub); flex:none; }
 
-  /* checklist (pizza) */
+  /* explorer series phone: list view + pizza checklist view */
+  .pv { position:absolute; inset:0; background:#fff; transition:transform .45s cubic-bezier(.22,.9,.3,1); }
+  .pv.off { transform:translateX(105%); }
+  .xtitle { font-family:var(--disp); font-weight:800; font-size:1.45rem; padding:54px 18px 0; }
+  .xsub { font-size:.72rem; color:var(--sub); padding:3px 18px 12px; }
+  .scards { position:absolute; top:118px; bottom:0; left:0; right:0; overflow-y:auto; overscroll-behavior:contain;
+            scrollbar-width:none; padding:2px 14px 20px; cursor:grab; }
+  .scards::-webkit-scrollbar { display:none; }
+  .scard { display:flex; align-items:center; gap:11px; background:#FAF8F4; border:1px solid var(--hairline);
+           border-radius:16px; padding:12px 12px; margin-bottom:9px; cursor:pointer; transition:transform .15s; }
+  .scard:active { transform:scale(.98); }
+  .semoji { font-size:1.35rem; width:40px; height:40px; background:#fff; border:1px solid var(--hairline);
+            border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; }
+  .smid { flex:1; min-width:0; }
+  .smid b { display:block; font-family:var(--disp); font-weight:700; font-size:.88rem; }
+  .smid > span:first-of-type { display:block; font-size:.64rem; color:var(--sub); line-height:1.35;
+        white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sprog { display:flex; align-items:center; gap:7px; margin-top:6px; }
+  .sprog i { flex:1; height:3px; background:#EDE8DD; border-radius:2px; }
+  .sprog em { font-style:normal; font-size:.6rem; font-weight:700; color:var(--sub); }
+  .schev { color:#C9BFAE; font-size:1.1rem; flex:none; }
   .sheet.plist-sheet { top:26%; }
   .ptitle { font-family:var(--disp); font-weight:800; font-size:1.15rem; padding:16px 16px 0; }
   .ptag { font-size:.7rem; color:var(--sub); padding:2px 16px 0; }
@@ -173,7 +197,6 @@
   .prow.done .pcheck::after { content:"\2713"; color:#fff; font-size:.72rem; font-weight:700; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
   .prow.done .pmid b { color:var(--sub); }
 
-  /* ---------- sections ---------- */
   section { padding:110px 28px; }
   .inner { max-width:1120px; margin:0 auto; }
   .kicker { font-size:.72rem; font-weight:700; letter-spacing:.24em; color:var(--gold-ink); margin-bottom:14px; }
@@ -196,14 +219,11 @@
   #screens { background:#fff; }
   #screens .head { text-align:center; margin-bottom:64px; }
   #screens .head .body { margin-left:auto; margin-right:auto; }
-  .gallery { display:flex; justify-content:center; align-items:flex-start; gap:36px; flex-wrap:wrap; }
-  .shot { width:min(270px, 86vw); }
-  .shot:nth-child(2){ margin-top:48px; } .shot:nth-child(3){ margin-top:16px; }
-  .shot .phone { border-radius:42px; border-width:7px; box-shadow:0 30px 70px rgba(0,0,0,.22); }
-  .shot .screen { height:calc(min(270px,86vw) * 2.1); max-height:566px; border-radius:35px; }
-  .shot .sheet { top:44px; }
-  .shot .sheet.drawer { top:42%; }
-  .shot .sheet.plist-sheet { top:24%; }
+  .gallery { display:flex; justify-content:center; align-items:flex-start; gap:44px; flex-wrap:wrap; }
+  .shot { width:min(300px, 86vw); }
+  .shot:nth-child(2){ margin-top:44px; }
+  .shot .phone { border-radius:46px; border-width:8px; box-shadow:0 30px 70px rgba(0,0,0,.22); }
+  .shot .screen { border-radius:38px; }
   .shot figcaption { text-align:center; margin-top:16px; font-size:.85rem; font-weight:600; color:var(--sub); }
 
   #series { background:radial-gradient(120% 100% at 50% 0%, var(--green-1) 0%, var(--green-2) 55%, var(--green-3) 100%); }
@@ -211,8 +231,8 @@
   @media (max-width:880px){ #series .inner { grid-template-columns:1fr; } }
   #series .h2 { color:var(--cream); }
   #series .body { color:rgba(255,255,255,.62); }
-  #series .phone { width:min(290px,74vw); margin:0 auto; }
-  #series .phone img { width:100%; display:block; }
+  #series .phone { width:min(330px,82vw); margin:0 auto; }
+  #series .phone-cap { margin-top:16px; }
   .stats { display:flex; margin-top:48px; border-top:1px solid rgba(246,241,227,.15); padding-top:36px; }
   .stat { flex:1; }
   .stat b { display:block; font-family:var(--disp); font-weight:800; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
@@ -232,6 +252,7 @@
 <body>
 
 <header>
+  <a class="brandmark" href="#"><img src="assets/appicon.png" alt="Top Dish icon"><span>Top Dish</span></a>
   <a class="corner-badge" href="#download" aria-label="Coming soon on the App Store">
     <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
     <span><span class="b1">Coming soon on the</span><span class="b2">App Store</span></span>
@@ -254,7 +275,7 @@
     <div class="hero-phone reveal" style="--d:.2s">
       <div>
         <div class="phone" id="heroPhone">
-        <div class="screen">
+        <div class="screen"><div class="fit">
           <img class="mapstrip" src="assets/top_bungalow.png" alt="">
           <div class="sheet" data-sheet>
             <div class="grabber"></div>
@@ -349,7 +370,7 @@
             <p class="sreport">&#9873;&nbsp; See something wrong? Report it</p>
           </div>
           <div class="scroll-cue" id="scrollCue">Scroll &darr;</div>
-        </div>
+        </div></div>
         </div>
         <p class="phone-cap">Live preview &mdash; scroll the sheet, tap a dish or a podium coin</p>
       </div>
@@ -384,11 +405,11 @@
     <div class="head">
       <p class="kicker reveal">TRY IT RIGHT HERE</p>
       <h2 class="h2 reveal" style="--d:.06s">A map that knows what to order.</h2>
-      <p class="body reveal" style="--d:.12s">These are live previews &mdash; scroll the sheets, filter the list, check off a slice.</p>
+      <p class="body reveal" style="--d:.12s">These are live previews &mdash; scroll the sheets, filter the list, open a menu.</p>
     </div>
     <div class="gallery">
       <figure class="shot reveal"><div class="phone">
-        <div class="screen">
+        <div class="screen"><div class="fit">
           <img class="mapstrip" src="assets/map_home.png" alt="">
           <div class="sheet drawer" data-sheet>
             <div class="grabber dark"></div>
@@ -435,105 +456,183 @@
               <span class="hdist">2.4 mi</span>
             </div></div>
           </div>
-        </div></div><figcaption>Filter what&rsquo;s near you</figcaption></figure>
+        </div></div></div><figcaption>Filter what&rsquo;s near you</figcaption></figure>
       <figure class="shot reveal" style="--d:.12s"><div class="phone">
-        <div class="screen">
-          <img class="mapstrip" src="assets/top_katz.png" alt="">
+        <div class="screen"><div class="fit">
+          <img class="mapstrip" src="assets/top_paradiso.png" alt="">
           <div class="sheet" data-sheet>
             <div class="grabber"></div>
-            <div class="shero"><img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/53675e70-8cbb-4fa8-89b1-429772df1ca9.webp" alt="Katz&#x27;s Delicatessen"><span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span></div>
+            <div class="shero"><img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/c9558064-4779-4496-9276-df96fec43b3b.webp" alt="Caffe Paradiso"><span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span></div>
             <div class="stitle">
-              <div class="srow"><h3>Katz&#x27;s Delicatessen</h3><div class="acts">
+              <div class="srow"><h3>Caffe Paradiso</h3><div class="acts">
               <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3-3 3 3M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="9"/></svg></span>
               <span class="act"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
               <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21M12 3C9.5 5.6 8.1 8.7 8.1 12s1.4 6.4 3.9 9"/></svg></span>
               <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
             </div></div>
-              <p class="smeta"><b class="star">&#9733;</b> <b>4.5</b> (53,253) &nbsp;&middot;&nbsp; $$$ &nbsp;&middot;&nbsp; American &nbsp;&middot;&nbsp; Manhattan</p>
+              <p class="smeta"><b class="star">&#9733;</b> <b>4.5</b> (560) &nbsp;&middot;&nbsp; $ &nbsp;&middot;&nbsp; Coffee shop &nbsp;&middot;&nbsp; Manhattan</p>
             </div>
         <div class="podium">
-          <div class="pod" data-target="kz-d1"><span class="pring silver">1,409<i>SIGHTINGS</i></span><b>Corned Beef</b><em>71% LOVED</em></div>
-          <div class="pod gold" data-target="kz-d0"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">10,093<i>SIGHTINGS</i></span><b>Pastrami</b><em>88% LOVED</em></div>
-          <div class="pod" data-target="kz-d2"><span class="pring bronze">1,245<i>SIGHTINGS</i></span><b>Pickles</b><em>79% LOVED</em></div>
+          <div class="pod" data-target="pr-d1"><span class="pring silver">14<i>SIGHTINGS</i></span><b>Strawberry Matcha Latte</b><em>79% LOVED</em></div>
+          <div class="pod gold" data-target="pr-d0"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">247<i>SIGHTINGS</i></span><b>Salted Brown Butter &amp; Oat Latte</b><em>79% LOVED</em></div>
+          <div class="pod" data-target="pr-d2"><span class="pring bronze">8<i>SIGHTINGS</i></span><b>Espresso con Panna</b><em>75% LOVED</em></div>
         </div>
             <div class="dlist">
-        <div class="drow open" id="kz-d0">
-          <div class="dhead"><span class="drank">1</span><span class="dname">Pastrami</span>
-            <span class="dnum">10,093<em>88%</em></span></div>
+        <div class="drow open" id="pr-d0">
+          <div class="dhead"><span class="drank">1</span><span class="dname">Salted Brown Butter &amp; Oat Latte</span>
+            <span class="dnum">247<em>79%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Thick-cut, smoky pastrami piled high, juice soaking into warm rye.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Watch the cutter hand-slice it fresh and take the free taste before you order. Thick-cut, smoky, peppery meat with a well-marbled fat cap, piled absurdly high on rye with mustard. Portions are massive, easily enough for two, so splitting is the move. Ask for a fattier cut if you want it juicier, or lean if you don&#x27;t. Worth the wait and the roughly $25-30 price.</p>
+            <p class="dquote">&ldquo;<u>Salted, nutty brown butter melting into cold, creamy oat milk espresso.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Iced espresso poured over house-made salted butter oat milk, tasting like melted cookie dough with a salty edge cutting the sweetness. Ask for light ice, the cup often runs mostly ice with just a few sips of actual drink. Add the cold foam or panna topping for extra richness. Expect a 15-30 minute line and only one size, so it can feel pricey for the pour. Go early since it sells out.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d1">
-          <div class="dhead"><span class="drank">2</span><span class="dname">Corned Beef</span>
-            <span class="dnum">1,409<em>71%</em></span></div>
+        <div class="drow" id="pr-d1">
+          <div class="dhead"><span class="drank">2</span><span class="dname">Strawberry Matcha Latte</span>
+            <span class="dnum">14<em>79%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Thick-sliced corned beef, salty and tender, stacked on soft rye.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Less famous than the pastrami but plenty of regulars order it instead, and it comes just as huge. At its best it&#x27;s tender, juicy, and mildly sweet, sliced thick and piled onto rye with mustard and pickles. Skip the mail-order version if you can; a wide range of reviewers found shipped corned beef tough, dry, or full of fat, while the in-house sandwich is far more consistent.</p>
+            <p class="dquote">&ldquo;<u>Strawberry matcha, tasting like real fruit blended into creamy oat milk.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Matcha whisked with real strawberry flavor, no artificial syrup taste, and oat milk for a creamy finish. Fans call it the best flavored matcha on the menu, refreshing without being too sweet. Order it if you want something lighter than the espresso drinks. Great for a first matcha experience if you like a milky, fruity sip.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d2">
-          <div class="dhead"><span class="drank">3</span><span class="dname">Pickles</span>
-            <span class="dnum">1,245<em>79%</em></span></div>
+        <div class="drow" id="pr-d2">
+          <div class="dhead"><span class="drank">3</span><span class="dname">Espresso con Panna</span>
+            <span class="dnum">8<em>75%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Crisp half-sour and full-sour pickles, cold, garlicky, and tangy.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Comes free with your sandwich in two styles: a milder half-sour and a stronger, garlicky full-sour, both cold and crunchy. They&#x27;re the built-in palate cleanser for all that fatty meat, and more than a few reviewers say they&#x27;re the best part of the meal. A handful found a batch that tasted more like plain cucumber than pickle, so quality can vary visit to visit, but most plates disappear fast.</p>
+            <p class="dquote">&ldquo;<u>Bitter espresso topped with thick, sweet whipped cream, dark chocolate shaved on top.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">A shot of espresso crowned with a generous dollop of sweet cream, sometimes finished with dark chocolate shavings. Reviewers describe it as bitter, creamy, and indulgent, like a classic reimagined. Try adding vanilla if you want it sweeter. At 6oz for around $5, it&#x27;s a small but rich treat best sipped slow outside.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d3">
-          <div class="dhead"><span class="drank">4</span><span class="dname">Reuben</span>
-            <span class="dnum">1,074<em>82%</em></span></div>
+        <div class="drow" id="pr-d3">
+          <div class="dhead"><span class="drank">4</span><span class="dname">Hot Chocolate</span>
+            <span class="dnum">7<em>100%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Melted Swiss and tangy sauerkraut smothering hot pastrami on rye.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Pastrami or corned beef piled with melted Swiss, tangy sauerkraut, and Russian dressing on rye, big enough that two people can split one and still be full. The meat itself gets consistent praise, but the bread is a known weak point: it&#x27;s often untoasted and turns soggy fast under all that dressing and kraut, so eat it quickly rather than letting it sit. Ask for pastrami over corned beef if given the choice.</p>
+            <p class="dquote">&ldquo;<u>Warm, silky hot chocolate melted smooth, richer with an espresso shot.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Made fresh and fast, this hot chocolate gets called one of the best drinks on the menu by more than one reviewer. Add a shot of espresso to turn it into something closer to a mocha, described as divine. A simple order that consistently satisfies, no long line required.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d4">
-          <div class="dhead"><span class="drank">5</span><span class="dname">Matzo Ball Soup</span>
-            <span class="dnum">643<em>79%</em></span></div>
+        <div class="drow" id="pr-d4">
+          <div class="dhead"><span class="drank">5</span><span class="dname">Magic</span>
+            <span class="dnum">6<em>100%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Fluffy matzo ball adrift in golden, herb-flecked chicken broth.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">A big, fluffy matzo ball afloat in warm, herby chicken broth, usually ordered as a lighter counterpart to the massive sandwiches. Most people call it comforting, well-seasoned, and nostalgic, tasting close to homemade. It travels less well than in person, though; shipped or delivered orders occasionally arrive salty or diluted, so it&#x27;s best eaten fresh at the counter. Pairing it with a half sandwich is a popular way to order.</p>
+            <p class="dquote">&ldquo;<u>A cortado, light espresso and milk balance, topped with delicate foam art.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">The Magic is a cortado with a lighter, more delicate espresso-to-milk ratio than the bigger lattes, sometimes poured with foam art shaped like a cat&#x27;s face. Reviewers call it one of their favorites at $6.50. Good pick if you want something small and quick, best enjoyed by the garden.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d5">
-          <div class="dhead"><span class="drank">6</span><span class="dname">Brisket</span>
-            <span class="dnum">612<em>71%</em></span></div>
+        <div class="drow" id="pr-d5">
+          <div class="dhead"><span class="drank">6</span><span class="dname">Banana Bread with Ricotta and Honeycomb</span>
+            <span class="dnum">6<em>83%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Thick, hand-carved brisket slices, fall-apart tender and rich with gravy.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Hand-carved, thick slices piled onto rye, often finished with a side of gravy or a smear of mustard to cut the richness. Portions are massive, easily splittable between two, and plenty of regulars call it the best beef they&#x27;ve ever had. The one thing to watch: dryness is the complaint that recurs most, so ask for extra gravy or try the half brisket, half pastrami combo instead.</p>
+            <p class="dquote">&ldquo;<u>Banana bread swirled with creamy ricotta and a drizzle of golden honeycomb.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Banana bread topped with a smear of ricotta and drizzle of honeycomb, called the best in reviews and worth the trip alone. One reviewer found it otherworldly, another simply incredible. Good option if you want something more like dessert than a plain pastry. Presentation can vary, since it sometimes arrives packaged to-go without the toppings plated on.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d6">
-          <div class="dhead"><span class="drank">7</span><span class="dname">French Fries</span>
-            <span class="dnum">496<em>51%</em></span></div>
+        <div class="drow" id="pr-d6">
+          <div class="dhead"><span class="drank">7</span><span class="dname">Croissant</span>
+            <span class="dnum">6<em>83%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Thick, double-fried steak fries, crisp outside, pillowy potato within.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Thick-cut steak fries, double-fried for a crisp shell around a soft potato center, served in a portion big enough for two or three to share. They&#x27;re ordered at a separate counter from the sandwiches, so grab them early rather than waiting until you&#x27;re seated. The recurring gripe is temperature: a fair number of orders arrive lukewarm or cold by the time they hit the table, so ask for them fresh out of the fryer.</p>
+            <p class="dquote">&ldquo;<u>Warm, flaky croissant with a golden, buttery crackling crust.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Served warm, with reviewers calling it the best croissant they&#x27;ve had and worth the wait in line for. Buttery and flaky enough that some go back specifically for it, on top of the coffee they came for. A solid pastry pick if you&#x27;re already waiting in line for a drink anyway.</p>
           </div></div>
         </div>
-        <div class="drow" id="kz-d7">
-          <div class="dhead"><span class="drank">8</span><span class="dname">Sandwich</span>
-            <span class="dnum">344<em>82%</em></span></div>
+        <div class="drow" id="pr-d7">
+          <div class="dhead"><span class="drank">8</span><span class="dname">Iced Vanilla Latte</span>
+            <span class="dnum">5<em>60%</em></span></div>
           <div class="dbody"><div class="dbody-in">
-            <p class="dquote">&ldquo;<u>Towering hand-sliced meat between fresh rye, piled higher than the bun.</u>&rdquo;</p>
-            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Katz&#x27;s signature move: mountains of hand-sliced meat stacked between rye, built to feed two people easily. Regulars tip the cutter for a better cut or a free taste before ordering, and splitting one with a friend is the smart way to go given the size and the price. It&#x27;s not cheap, running well over $20, but almost nobody who&#x27;s had one calls it a letdown.</p>
+            <p class="dquote">&ldquo;<u>Vanilla-sweet iced latte, bitter espresso balancing smooth, creamy milk beneath.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">A vanilla-sweetened iced latte some reviewers rank even above the signature drink, still bitter enough to balance the vanilla. It comes in one size, and a few found it disappears fast if you ask for less ice. Order it if you want the same espresso base without the salted-butter twist, and the line for it tends to move quickly.</p>
           </div></div>
         </div></div>
             <p class="sreport">&#9873;&nbsp; See something wrong? Report it</p>
           </div>
           
-        </div></div><figcaption>10,093 sightings deep</figcaption></figure>
-      <figure class="shot reveal" style="--d:.24s"><div class="phone">
-        <div class="screen">
-          <img class="mapstrip" src="assets/map_pizza.png" alt="">
-          <div class="sheet plist-sheet" data-sheet>
-            <div class="grabber dark"></div>
-            <p class="ptitle">&#127829; The Pizza Canon</p>
-            <p class="ptag">The slices New York argues about. Settle it yourself.</p>
-            <p class="pcount"><b id="pizzaCount">0</b> of 28 collected &mdash; tap to check off</p>
-            <div class="plist">
+        </div></div></div><figcaption>Even the coffee is ranked</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="series">
+  <div class="inner">
+    <div>
+      <p class="kicker reveal">EXPLORER SERIES</p>
+      <h2 class="h2 reveal" style="--d:.06s">25 dish trails across the city.</h2>
+      <p class="body reveal" style="--d:.12s">The Pizza Canon. Bagel Royalty. The Dumpling Trail. Curated runs of the city&rsquo;s essential plates &mdash; check them off as you eat your way through, and heart the spots you&rsquo;re saving for later.</p>
+      <div class="stats">
+        <div class="stat reveal"><b data-count="18000">0</b><span>RESTAURANTS MAPPED</span></div>
+        <div class="stat reveal" style="--d:.1s"><b data-count="17000">0</b><span>TOP DISHES CROWNED</span></div>
+        <div class="stat reveal" style="--d:.2s"><b data-count="25">0</b><span>DISH TRAILS</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="--d:.15s">
+      <div class="phone">
+        <div class="screen"><div class="fit">
+          <div class="pv" id="viewSeries">
+            <p class="xtitle">Explorer Series</p>
+            <p class="xsub">25 dish trails &middot; 604 spots to collect</p>
+            <div class="scards">
+          <div class="scard snav">
+            <span class="semoji">🍕</span>
+            <div class="smid"><b>The Pizza Canon</b><span>The slices New York argues about. Settle it yourself.</span>
+              <span class="sprog"><i></i><em>0/28</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">☕️</span>
+            <div class="smid"><b>The Espresso Crawl</b><span>The coffee bars worth crossing a bridge for.</span>
+              <span class="sprog"><i></i><em>0/24</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🍜</span>
+            <div class="smid"><b>Ramen Circuit</b><span>Broth pilgrimages, tonkotsu to shoyu.</span>
+              <span class="sprog"><i></i><em>0/24</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🥯</span>
+            <div class="smid"><b>Bagel Royalty</b><span>Hand-rolled, kettle-boiled, argued-over.</span>
+              <span class="sprog"><i></i><em>0/24</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🌮</span>
+            <div class="smid"><b>Taco Temples</b><span>From birria windows to al pastor counters.</span>
+              <span class="sprog"><i></i><em>0/26</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🥟</span>
+            <div class="smid"><b>Dumpling Trail</b><span>Soup dumplings, potstickers, dim sum carts.</span>
+              <span class="sprog"><i></i><em>0/27</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🥐</span>
+            <div class="smid"><b>The Pastry Box</b><span>Croissants, babka and the city&#x27;s flakiest counters.</span>
+              <span class="sprog"><i></i><em>0/26</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🍝</span>
+            <div class="smid"><b>Red Sauce Classics</b><span>Old-school Italian — checkered tablecloths optional.</span>
+              <span class="sprog"><i></i><em>0/28</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div>
+          <div class="scard">
+            <span class="semoji">🍦</span>
+            <div class="smid"><b>The Scoop Run</b><span>Cones, soft serve and late-night freezers.</span>
+              <span class="sprog"><i></i><em>0/22</em></span></div>
+            <span class="schev">&#8250;</span>
+          </div></div>
+          </div>
+          <div class="pv off" id="viewPizza">
+            <img class="mapstrip" src="assets/map_pizza.png" alt="">
+            <span class="chip backchip" id="pizzaBack">&#8249;</span>
+            <div class="sheet plist-sheet" data-sheet>
+              <div class="grabber dark"></div>
+              <p class="ptitle">&#127829; The Pizza Canon</p>
+              <p class="ptag">The slices New York argues about. Settle it yourself.</p>
+              <p class="pcount"><b id="pizzaCount">0</b> of 28 collected &mdash; tap to check off</p>
+              <div class="plist">
             <div class="prow">
               <span class="prank">1</span>
               <div class="pmid"><b>Totonno&#x27;s</b>
@@ -630,26 +729,10 @@
               </div>
               <span class="pcheck"></span>
             </div></div>
+            </div>
           </div>
-        </div></div><figcaption>Check off the Pizza Canon</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<section id="series">
-  <div class="inner">
-    <div>
-      <p class="kicker reveal">EXPLORER SERIES</p>
-      <h2 class="h2 reveal" style="--d:.06s">25 dish trails across the city.</h2>
-      <p class="body reveal" style="--d:.12s">The Pizza Canon. Bagel Royalty. The Dumpling Trail. Curated runs of the city&rsquo;s essential plates &mdash; check them off as you eat your way through, and heart the spots you&rsquo;re saving for later.</p>
-      <div class="stats">
-        <div class="stat reveal"><b data-count="18000">0</b><span>RESTAURANTS MAPPED</span></div>
-        <div class="stat reveal" style="--d:.1s"><b data-count="17000">0</b><span>TOP DISHES CROWNED</span></div>
-        <div class="stat reveal" style="--d:.2s"><b data-count="25">0</b><span>DISH TRAILS</span></div>
-      </div>
-    </div>
-    <div class="reveal" style="--d:.15s">
-      <div class="phone"><img loading="lazy" srcset="assets/09_explore_series_500.png 500w, assets/09_explore_series_760.png 760w, assets/09_explore_series_1140.png 1140w" sizes="(max-width: 880px) 74vw, 290px" src="assets/09_explore_series_760.png" alt="Explorer Series screen with curated dish checklists" width="660" height="1434"></div>
+        </div></div></div>
+      <p class="phone-cap">Open The Pizza Canon and check off a slice</p>
     </div>
   </div>
 </section>
@@ -667,16 +750,24 @@
 </footer>
 
 <script>
+  // Phone screens are designed at 362px and scaled to whatever the frame gives them.
+  const fitScreens = () => document.querySelectorAll('.screen').forEach(sc => {
+    const fit = sc.querySelector('.fit'); if (!fit) return;
+    const s = sc.clientWidth / 362;
+    fit.style.transform = `scale(${s})`;
+    sc.style.height = Math.round(780 * s) + 'px';
+  });
+  fitScreens();
+  addEventListener('resize', fitScreens);
+
   const io = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.16 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  // Smooth scrolling for in-page links only (fragment landings stay instant).
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const t = document.getElementById(a.getAttribute('href').slice(1));
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   }));
-  // Fragment landings / conservative observers: force-reveal whatever is on screen.
   const revealNow = () => document.querySelectorAll('.reveal:not(.in)').forEach(el => {
     const r = el.getBoundingClientRect();
     if (r.top < innerHeight && r.bottom > 0) el.classList.add('in');
@@ -684,7 +775,6 @@
   revealNow();
   [300, 900, 2000].forEach(t => setTimeout(revealNow, t));
 
-  // Gentle hero-phone parallax
   const hp = document.getElementById('heroPhone');
   if (hp && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     addEventListener('scroll', () => {
@@ -693,7 +783,6 @@
     }, { passive: true });
   }
 
-  // Count-up
   function countUp(el, target, suffix = '', dur = 1400) {
     const t0 = performance.now();
     (function tick(now) {
@@ -713,7 +802,7 @@
 
   // ----- interactive phones -----
   let dragged = false;
-  document.querySelectorAll('[data-sheet]').forEach(sheet => {
+  document.querySelectorAll('[data-sheet], .scards').forEach(sheet => {
     let down = false, startY = 0, startTop = 0;
     sheet.addEventListener('pointerdown', e => { down = true; dragged = false; startY = e.clientY; startTop = sheet.scrollTop; });
     addEventListener('pointermove', e => {
@@ -724,11 +813,9 @@
     addEventListener('pointerup', () => { down = false; sheet.classList.remove('dragging'); setTimeout(() => dragged = false, 0); });
   });
 
-  // dish rows expand/collapse
   document.querySelectorAll('.drow').forEach(row =>
     row.addEventListener('click', () => { if (!dragged) row.classList.toggle('open'); }));
 
-  // podium coins: expand that dish and scroll the sheet to it (like the app)
   document.querySelectorAll('.pod[data-target]').forEach(pod =>
     pod.addEventListener('click', () => {
       if (dragged) return;
@@ -738,28 +825,24 @@
       setTimeout(() => sheet.scrollTo({ top: row.offsetTop - 52, behavior: 'smooth' }), 60);
     }));
 
-  // scroll cue fades on first interaction
   const cue = document.getElementById('scrollCue');
   if (cue) {
-    const s = cue.closest('.screen').querySelector('[data-sheet]');
+    const s = cue.closest('.fit').querySelector('[data-sheet]');
     const hide = () => cue.classList.add('hide');
     s.addEventListener('scroll', hide, { passive: true, once: true });
     s.addEventListener('pointerdown', hide, { once: true });
   }
 
-  // home drawer price chips filter the list
   document.querySelectorAll('.dchip').forEach(chip =>
     chip.addEventListener('click', () => {
       if (dragged) return;
-      const chips = chip.closest('.dchips');
-      chips.querySelectorAll('.dchip').forEach(c => c.classList.remove('on'));
+      chip.closest('.dchips').querySelectorAll('.dchip').forEach(c => c.classList.remove('on'));
       chip.classList.add('on');
       const p = chip.dataset.p;
       chip.closest('[data-sheet]').querySelectorAll('.hrow').forEach(r =>
         r.style.display = (p === 'all' || r.dataset.price === p) ? '' : 'none');
     }));
 
-  // pizza checklist: tap to collect
   const pcount = document.getElementById('pizzaCount');
   document.querySelectorAll('.prow').forEach(row =>
     row.addEventListener('click', () => {
@@ -767,6 +850,11 @@
       row.classList.toggle('done');
       pcount.textContent = document.querySelectorAll('.prow.done').length;
     }));
+
+  // explorer series phone: list -> pizza checklist -> back
+  const vp = document.getElementById('viewPizza');
+  document.querySelector('.scard.snav')?.addEventListener('click', () => { if (!dragged) vp.classList.remove('off'); });
+  document.getElementById('pizzaBack')?.addEventListener('click', () => vp.classList.add('off'));
 </script>
 </body>
 </html>
