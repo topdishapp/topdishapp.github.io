@@ -18,52 +18,40 @@
     --green-1:#28503C; --green-2:#1F3A2D; --green-3:#112218;
     --cream:#F6F1E3; --paper:#F6F1E8; --ink:#1B1714; --sub:#857C6E;
     --gold:#C8A95C; --gold-ink:#C2912F; --red:#9E2B25; --hairline:#EDEAE2;
+    --disp:'Plus Jakarta Sans',-apple-system,sans-serif;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { font-family:'Inter',-apple-system,sans-serif; color:var(--ink); background:var(--paper);
          -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-  .serif { font-family:'Plus Jakarta Sans',-apple-system,sans-serif; }
-
-
-  .cloche-mark { display:flex; flex-direction:column; align-items:center; }
-  .cm-dome { background:#F6F1E3; border:1.2px solid rgba(0,0,0,.15); border-bottom:none;
-             border-radius:999px 999px 0 0; }
-  .cm-base { background:#C8A95C; border-radius:999px; }
-  .cm-shadow { background:rgba(0,0,0,.20); border-radius:50%; filter:blur(1px); }
-
-  /* ---------- reveal-on-scroll ---------- */
   .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,.9,.3,1), transform .8s cubic-bezier(.22,.9,.3,1); transition-delay:var(--d,0s); }
   .reveal.in { opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce) { .reveal { transition:none; opacity:1; transform:none; } }
 
-  /* ---------- nav ---------- */
-  nav { position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center;
-        justify-content:space-between; padding:18px 28px; transition:background .35s, box-shadow .35s, padding .35s; }
-  nav.solid { background:rgba(17,34,24,.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-              padding:12px 28px; box-shadow:0 1px 0 rgba(255,255,255,.06); }
-  .navmark { display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none; }
-  .navmark img, .navmark svg { width:26px; height:26px; }
-  .navmark span { white-space:nowrap; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1.15rem; letter-spacing:.01em; }
-  .nav-badge { display:inline-flex; align-items:center; gap:9px; background:#000; color:#fff; text-decoration:none;
-    font-size:.92rem; font-weight:700; font-family:'Plus Jakarta Sans',sans-serif;
-    border:1px solid rgba(255,255,255,.32); border-radius:12px; padding:10px 18px;
-    transition:transform .25s, box-shadow .25s; }
-  .nav-badge:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.35); }
-  .nav-badge svg { width:16px; height:16px; }
+  .cloche-mark { display:flex; flex-direction:column; align-items:center; }
+  .cm-dome { background:#F6F1E3; border:1.2px solid rgba(0,0,0,.15); border-bottom:none; border-radius:999px 999px 0 0; }
+  .cm-base { background:#C8A95C; border-radius:999px; }
+  .cm-shadow { background:rgba(0,0,0,.20); border-radius:50%; filter:blur(1px); }
 
   /* ---------- hero ---------- */
   header { position:relative; min-height:100svh; display:flex; align-items:center;
            background:radial-gradient(120% 90% at 50% 18%, var(--green-1) 0%, var(--green-2) 45%, var(--green-3) 100%); overflow:hidden; }
-  header::after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
-  .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:120px 28px 40px; width:100%;
+  .corner-badge { position:absolute; top:22px; right:24px; z-index:10; display:inline-flex; align-items:center; gap:10px;
+    background:#000; color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.32); border-radius:12px;
+    padding:8px 16px 8px 13px; transition:transform .25s, box-shadow .25s; }
+  .corner-badge:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.35); }
+  .corner-badge svg { width:19px; height:19px; }
+  .corner-badge .b1 { display:block; font-size:.52rem; letter-spacing:.04em; opacity:.85; }
+  .corner-badge .b2 { display:block; font-family:var(--disp); font-size:.92rem; font-weight:700; margin-top:0; }
+  @media (max-width:640px){ .corner-badge { top:14px; right:14px; } }
+
+  .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:96px 28px 56px; width:100%;
                display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
-  @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:110px; } }
+  @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:88px; } }
   .cloche { display:inline-block; margin-bottom:34px; filter:drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
   @media (max-width:880px){ .cloche { margin:0 auto 30px; } }
-  h1 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; color:var(--cream); font-size:clamp(2.5rem, 5.4vw, 4rem); line-height:1.08; letter-spacing:-.01em; }
-  .hero-sub { color:rgba(255,255,255,.68); font-size:clamp(1.02rem, 1.6vw, 1.18rem); line-height:1.65; margin:20px 0 34px; max-width:30em; }
+  h1 { font-family:var(--disp); font-weight:800; color:var(--cream); font-size:clamp(2.4rem, 5.2vw, 3.9rem); line-height:1.08; letter-spacing:-.02em; }
+  .hero-sub { color:rgba(255,255,255,.68); font-size:clamp(1rem, 1.6vw, 1.15rem); line-height:1.65; margin:20px 0 34px; max-width:30em; }
   @media (max-width:880px){ .hero-sub { margin-left:auto; margin-right:auto; } }
   .cta-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
   @media (max-width:880px){ .cta-row { justify-content:center; } }
@@ -72,87 +60,127 @@
   .appstore-badge:hover { transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.35); }
   .appstore-badge svg { width:26px; height:26px; }
   .appstore-badge .b1 { display:block; font-size:.62rem; letter-spacing:.04em; opacity:.85; }
-  .appstore-badge .b2 { display:block; font-size:1.12rem; font-weight:600; letter-spacing:-.01em; margin-top:1px; }
+  .appstore-badge .b2 { display:block; font-family:var(--disp); font-size:1.12rem; font-weight:700; margin-top:1px; }
   .ghost-btn { color:var(--cream); text-decoration:none; font-weight:600; font-size:.95rem; padding:14px 22px;
     border:1px solid rgba(246,241,227,.35); border-radius:13px; transition:background .25s, border-color .25s; }
   .ghost-btn:hover { background:rgba(246,241,227,.08); border-color:rgba(246,241,227,.6); }
   .hero-note { margin-top:18px; color:rgba(255,255,255,.42); font-size:.8rem; }
 
-  .hero-phone { position:relative; display:flex; justify-content:center; }
-  .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden;
-           box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); line-height:0; }
-  .phone img { width:100%; height:auto; display:block; }
+  /* ---------- phones ---------- */
+  .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden; position:relative;
+           box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); }
+  .hero-phone { display:flex; justify-content:center; }
   .hero-phone .phone { width:min(380px, 80vw); transform:rotate(3deg); will-change:transform; }
-  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(300px,74vw); transform:rotate(2deg); } }
-
-  
-  /* ---------- interactive hero screen ---------- */
-  .phone .screen { height:824px; overflow-y:auto; overscroll-behavior:contain; background:#fff;
-                   border-radius:43px; scrollbar-width:none; -webkit-overflow-scrolling:touch;
-                   font-family:'Inter',sans-serif; line-height:1.45; cursor:grab; user-select:none; }
-  .phone .screen::-webkit-scrollbar { display:none; }
-  .phone .screen.dragging { cursor:grabbing; }
-  @media (max-width:880px){ .phone .screen { height:651px; } }
-  .grabber { position:sticky; top:8px; z-index:5; width:38px; height:5px; margin:0 auto -5px;
-             border-radius:3px; background:rgba(255,255,255,.85); box-shadow:0 1px 4px rgba(0,0,0,.25); }
-  .shero { position:relative; height:300px; }
-  .shero img { width:100%; height:118%; object-fit:cover; object-position:center 30%; display:block;
-               -webkit-mask-image:linear-gradient(to bottom, #000 62%, transparent 98%);
-               mask-image:linear-gradient(to bottom, #000 62%, transparent 98%); pointer-events:none; }
-  .chip { position:absolute; top:16px; width:30px; height:30px; border-radius:50%; background:rgba(0,0,0,.5);
-          border:.5px solid rgba(255,255,255,.5); color:#fff; font-size:.8rem; display:flex; align-items:center; justify-content:center; }
-  .cl { left:14px; } .cr { right:14px; }
-  .stitle { padding:0 18px 4px; margin-top:-34px; position:relative; }
-  .srow { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .stitle h3 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.75rem; color:#1B1714; letter-spacing:-.01em; }
-  .acts { display:flex; gap:6px; }
-  .act { width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #EDEAE2;
-         box-shadow:0 2px 6px rgba(0,0,0,.07); color:#9E2B25; display:flex; align-items:center; justify-content:center; }
-  .act svg { width:14px; height:14px; }
-  .smeta { font-size:.72rem; color:#857C6E; margin-top:5px; }
-  .smeta b { color:#1B1714; font-weight:600; } .smeta .star { color:#E9B949; }
-  .podium { display:flex; align-items:flex-end; justify-content:center; gap:8px; padding:18px 14px 6px; }
-  .pod { flex:1; text-align:center; padding:12px 6px 10px; border-radius:14px; border:1px solid #EDEAE2; background:#FAF8F4; position:relative; }
-  .pod.gold { background:#F6F1E3; padding-top:16px; padding-bottom:14px; }
-  .pcrown { width:17px; height:14px; display:block; margin:0 auto 2px; }
-  .pring { display:flex; flex-direction:column; align-items:center; justify-content:center; width:56px; height:56px;
-           margin:0 auto 8px; border-radius:50%; border:2px solid; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.05rem; }
-  .pring i { font-style:normal; font-size:.32rem; letter-spacing:.12em; color:#857C6E; font-family:'Inter',sans-serif; font-weight:700; }
-  .pring.silver { border-color:#B9B4AA; color:#8B857A; }
-  .pring.goldr { border-color:#C8A95C; color:#C2912F; width:62px; height:62px; font-size:1.2rem; }
-  .pring.bronze { border-color:#C08F5F; color:#A5713C; }
-  .pod b { display:block; font-size:.66rem; font-weight:600; color:#1B1714; line-height:1.25; min-height:2.2em; }
-  .pod em { font-style:normal; font-size:.56rem; font-weight:700; color:#4F7D5D; letter-spacing:.04em; }
-  .dlist { padding:10px 0 0; }
-  .drow { border-top:1px solid #F3F0E9; padding:0 18px; cursor:pointer; }
-  .dhead { display:flex; align-items:baseline; gap:10px; padding:13px 0; }
-  .drank { font-size:.68rem; color:#A59B8B; font-weight:600; width:12px; }
-  .dname { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.02rem; color:#1B1714; flex:1; }
-  .dnum { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.02rem; color:#1B1714; text-align:right; }
-  .dnum em { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:.6rem; font-weight:700; color:#C2912F; }
-  .dbody { max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.22,.9,.3,1); }
-  .drow.open .dbody { max-height:560px; }
-  .dbody-in { padding:2px 0 16px; }
-  .dquote { font-family:'Plus Jakarta Sans',sans-serif; font-style:italic; font-weight:500; font-size:.92rem; color:#1B1714; line-height:1.5; }
-  .dquote u { text-decoration-color:rgba(158,43,37,.65); text-decoration-thickness:2px; text-underline-offset:3px; }
-  .dnoteslabel { font-size:.56rem; font-weight:700; letter-spacing:.16em; color:#9E2B25; margin:10px 0 4px; }
-  .dnotes { font-size:.78rem; color:#4A443C; line-height:1.55; }
-  .sreport { text-align:center; font-size:.7rem; font-weight:600; color:#857C6E; padding:16px 0 30px; }
-  .scroll-cue { position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:6;
-                background:rgba(17,34,24,.82); color:#F6F1E3; font-size:.72rem; font-weight:600;
-                padding:7px 14px; border-radius:999px; pointer-events:none; transition:opacity .5s; backdrop-filter:blur(6px); }
-  .scroll-cue.hide { opacity:0; }
-  .hero-phone .phone { position:relative; }
+  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(320px,80vw); transform:rotate(2deg); } }
   .phone-cap { text-align:center; color:rgba(255,255,255,.45); font-size:.78rem; margin-top:16px; }
+
+  .screen { position:relative; height:calc(min(380px,80vw) * 2.12); max-height:806px; overflow:hidden; background:#E8E4DA;
+            border-radius:43px; font-family:'Inter',sans-serif; line-height:1.45; user-select:none; }
+  .mapstrip { position:absolute; top:0; left:0; width:100%; display:block; }
+  .sheet { position:absolute; top:58px; left:0; right:0; bottom:0; background:#fff; border-radius:24px 24px 0 0;
+           overflow-y:auto; overscroll-behavior:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+           box-shadow:0 -10px 30px rgba(0,0,0,.25); cursor:grab; }
+  .sheet::-webkit-scrollbar { display:none; }
+  .sheet.dragging { cursor:grabbing; }
+  .grabber { position:sticky; top:7px; z-index:5; width:38px; height:5px; margin:0 auto -5px;
+             border-radius:3px; background:rgba(255,255,255,.9); box-shadow:0 1px 4px rgba(0,0,0,.2); }
+  .grabber.dark { background:#D8D2C6; box-shadow:none; }
+
+  .shero { position:relative; height:252px; }
+  .shero img { width:100%; height:117%; object-fit:cover; object-position:center 32%; display:block; border-radius:24px 24px 0 0;
+               -webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 98%); mask-image:linear-gradient(to bottom,#000 60%,transparent 98%); pointer-events:none; }
+  .chip { position:absolute; top:14px; width:29px; height:29px; border-radius:50%; background:rgba(0,0,0,.5);
+          border:.5px solid rgba(255,255,255,.5); color:#fff; font-size:.78rem; display:flex; align-items:center; justify-content:center; }
+  .cl { left:13px; } .cr { right:13px; }
+  .stitle { padding:0 17px 4px; margin-top:-30px; position:relative; }
+  .srow { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .stitle h3 { font-family:var(--disp); font-weight:800; font-size:1.5rem; color:var(--ink); letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .acts { display:flex; gap:5px; flex:none; }
+  .act { width:29px; height:29px; border-radius:50%; background:#fff; border:1px solid var(--hairline);
+         box-shadow:0 2px 6px rgba(0,0,0,.07); color:var(--red); display:flex; align-items:center; justify-content:center; }
+  .act svg { width:13px; height:13px; }
+  .smeta { font-size:.7rem; color:var(--sub); margin-top:4px; }
+  .smeta b { color:var(--ink); font-weight:600; } .star { color:#E9B949; font-style:normal; }
+
+  .podium { display:flex; align-items:flex-end; justify-content:center; gap:7px; padding:16px 13px 6px; }
+  .pod { flex:1; text-align:center; padding:11px 5px 9px; border-radius:14px; border:1px solid var(--hairline); background:#FAF8F4; cursor:pointer; transition:transform .2s; }
+  .pod:active { transform:scale(.96); }
+  .pod.gold { background:var(--cream); padding-top:14px; padding-bottom:13px; }
+  .pcrown { width:16px; height:13px; display:block; margin:0 auto 2px; }
+  .pring { display:flex; flex-direction:column; align-items:center; justify-content:center; width:52px; height:52px;
+           margin:0 auto 7px; border-radius:50%; border:2px solid; font-family:var(--disp); font-weight:700; font-size:.92rem; }
+  .pring i { font-style:normal; font-size:.3rem; letter-spacing:.12em; color:var(--sub); font-family:'Inter',sans-serif; font-weight:700; }
+  .pring.silver { border-color:#B9B4AA; color:#8B857A; }
+  .pring.goldr { border-color:var(--gold); color:var(--gold-ink); width:58px; height:58px; font-size:1.05rem; }
+  .pring.bronze { border-color:#C08F5F; color:#A5713C; }
+  .pod b { display:block; font-size:.62rem; font-weight:700; color:var(--ink); line-height:1.25; min-height:2.4em; font-family:var(--disp); }
+  .pod em { font-style:normal; font-size:.53rem; font-weight:700; color:#1F8A50; letter-spacing:.04em; }
+
+  .dlist { padding:8px 0 0; }
+  .drow { border-top:1px solid #F3F0E9; padding:0 17px; cursor:pointer; }
+  .dhead { display:flex; align-items:baseline; gap:9px; padding:12px 0; }
+  .drank { font-size:.65rem; color:#A59B8B; font-weight:600; width:11px; }
+  .dname { font-family:var(--disp); font-weight:700; font-size:.95rem; color:var(--ink); flex:1; }
+  .dnum { font-family:var(--disp); font-weight:700; font-size:.95rem; color:var(--ink); text-align:right; }
+  .dnum em { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:.56rem; font-weight:700; color:var(--gold-ink); }
+  .dbody { max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.22,.9,.3,1); }
+  .drow.open .dbody { max-height:600px; }
+  .dbody-in { padding:2px 0 15px; }
+  .dquote { font-family:var(--disp); font-style:italic; font-weight:600; font-size:.86rem; color:var(--ink); line-height:1.5; }
+  .dquote u { text-decoration-color:rgba(158,43,37,.65); text-decoration-thickness:2px; text-underline-offset:3px; }
+  .dnoteslabel { font-size:.53rem; font-weight:700; letter-spacing:.16em; color:var(--red); margin:9px 0 4px; }
+  .dnotes { font-size:.74rem; color:#4A443C; line-height:1.55; }
+  .sreport { text-align:center; font-size:.66rem; font-weight:600; color:var(--sub); padding:14px 0 28px; }
+  .scroll-cue { position:absolute; left:50%; bottom:16px; transform:translateX(-50%); z-index:6;
+                background:rgba(17,34,24,.82); color:var(--cream); font-size:.7rem; font-weight:600;
+                padding:6px 13px; border-radius:999px; pointer-events:none; transition:opacity .5s; backdrop-filter:blur(6px); }
+  .scroll-cue.hide { opacity:0; }
+
+  /* drawer (home) */
+  .sheet.drawer { top:44%; border-radius:26px 26px 0 0; }
+  .dtitle { font-family:var(--disp); font-weight:800; font-size:1.05rem; padding:16px 16px 0; }
+  .dtitle span { color:var(--sub); font-weight:600; font-size:.8rem; }
+  .dsearch { margin:10px 16px 0; background:#F4EFE7; border-radius:12px; padding:9px 12px; font-size:.74rem; color:#A59B8B; }
+  .dchips { display:flex; gap:6px; padding:10px 16px 4px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
+  .dchips::-webkit-scrollbar { display:none; }
+  .dchip { flex:none; font-size:.68rem; font-weight:700; padding:6px 11px; border-radius:999px; background:#F4EFE7; color:var(--ink); cursor:pointer; border:1px solid transparent; }
+  .dchip.on { background:#111; color:#fff; }
+  .hlist { padding:4px 0 20px; }
+  .hrow { display:flex; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid #F3F0E9; }
+  .hthumb { width:52px; height:52px; border-radius:12px; object-fit:cover; background:#EEE9DF; }
+  .hmid { flex:1; min-width:0; }
+  .hmid b { display:block; font-family:var(--disp); font-weight:700; font-size:.84rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hmeta { font-size:.64rem; color:var(--sub); }
+  .hdish { display:flex; align-items:center; gap:4px; font-size:.64rem; font-weight:700; color:var(--gold-ink); margin-top:2px; }
+  .hdish u { text-decoration:none; font-weight:600; color:var(--sub); }
+  .hcrown { width:10px; height:9px; flex:none; }
+  .hdist { font-size:.64rem; color:var(--sub); flex:none; }
+
+  /* checklist (pizza) */
+  .sheet.plist-sheet { top:26%; }
+  .ptitle { font-family:var(--disp); font-weight:800; font-size:1.15rem; padding:16px 16px 0; }
+  .ptag { font-size:.7rem; color:var(--sub); padding:2px 16px 0; }
+  .pcount { font-size:.68rem; font-weight:600; color:var(--red); padding:8px 16px 6px; }
+  .pcount b { font-family:var(--disp); font-weight:800; font-size:.9rem; }
+  .plist { padding-bottom:20px; }
+  .prow { display:flex; align-items:center; gap:10px; padding:10px 16px; border-top:1px solid #F3F0E9; cursor:pointer; }
+  .prank { font-size:.66rem; color:#A59B8B; font-weight:600; width:14px; text-align:right; }
+  .pmid { flex:1; min-width:0; }
+  .pmid b { display:block; font-family:var(--disp); font-weight:700; font-size:.84rem; }
+  .pmeta { font-size:.63rem; color:var(--sub); }
+  .pdish { display:flex; align-items:center; gap:4px; font-size:.63rem; font-weight:700; color:var(--gold-ink); }
+  .pcheck { flex:none; width:22px; height:22px; border-radius:50%; border:1.6px solid #D8D2C6; transition:all .2s; position:relative; }
+  .prow.done .pcheck { background:var(--red); border-color:var(--red); }
+  .prow.done .pcheck::after { content:"\2713"; color:#fff; font-size:.72rem; font-weight:700; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .prow.done .pmid b { color:var(--sub); }
 
   /* ---------- sections ---------- */
   section { padding:110px 28px; }
   .inner { max-width:1120px; margin:0 auto; }
   .kicker { font-size:.72rem; font-weight:700; letter-spacing:.24em; color:var(--gold-ink); margin-bottom:14px; }
-  .h2 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(1.9rem, 3.6vw, 2.7rem); line-height:1.15; letter-spacing:-.01em; }
+  .h2 { font-family:var(--disp); font-weight:800; font-size:clamp(1.8rem, 3.4vw, 2.6rem); line-height:1.15; letter-spacing:-.02em; }
   .body { color:var(--sub); font-size:1.05rem; line-height:1.7; margin-top:16px; max-width:34em; }
 
-  /* sightings */
   #sightings .inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
   @media (max-width:880px){ #sightings .inner { grid-template-columns:1fr; gap:44px; } }
   .quotes { display:flex; flex-direction:column; gap:12px; }
@@ -162,37 +190,40 @@
   .quote:nth-child(2){ margin-left:34px; } .quote:nth-child(3){ margin-left:68px; }
   @media (max-width:640px){ .quote:nth-child(2){margin-left:20px;} .quote:nth-child(3){margin-left:40px;} }
   .counter-row { display:flex; align-items:baseline; gap:12px; margin-top:34px; }
-  .crown { width:30px; height:30px; align-self:center; }
-  .count { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3rem,6vw,4.2rem); color:var(--gold-ink); font-variant-numeric:tabular-nums; }
+  .crown-lg { width:30px; height:30px; align-self:center; }
+  .count { font-family:var(--disp); font-weight:800; font-size:clamp(3rem,6vw,4.2rem); color:var(--gold-ink); font-variant-numeric:tabular-nums; }
   .count-label { color:var(--sub); font-weight:600; }
 
-  /* screens gallery */
   #screens { background:#fff; }
-  #screens .head { text-align:center; margin-bottom:70px; }
+  #screens .head { text-align:center; margin-bottom:64px; }
   #screens .head .body { margin-left:auto; margin-right:auto; }
-  .gallery { display:flex; justify-content:center; align-items:flex-start; gap:34px; flex-wrap:wrap; }
-  .shot { width:min(250px, 42vw); }
-  .shot:nth-child(2){ margin-top:56px; } .shot:nth-child(3){ margin-top:20px; }
-  .shot:nth-child(4){ margin-top:72px; } .shot:nth-child(5){ margin-top:36px; }
-  .shot .phone { border-radius:40px; border-width:7px; transition:transform .45s cubic-bezier(.22,.9,.3,1), box-shadow .45s; }
-  .shot .phone:hover { transform:translateY(-10px); box-shadow:0 50px 90px rgba(0,0,0,.28); }
+  .gallery { display:flex; justify-content:center; align-items:flex-start; gap:36px; flex-wrap:wrap; }
+  .shot { width:min(270px, 86vw); }
+  .shot:nth-child(2){ margin-top:48px; } .shot:nth-child(3){ margin-top:16px; }
+  .shot .phone { border-radius:42px; border-width:7px; box-shadow:0 30px 70px rgba(0,0,0,.22); }
+  .shot .screen { height:calc(min(270px,86vw) * 2.1); max-height:566px; border-radius:35px; }
+  .shot .sheet { top:44px; }
+  .shot .sheet.drawer { top:42%; }
+  .shot .sheet.plist-sheet { top:24%; }
   .shot figcaption { text-align:center; margin-top:16px; font-size:.85rem; font-weight:600; color:var(--sub); }
 
-  /* series */
   #series { background:radial-gradient(120% 100% at 50% 0%, var(--green-1) 0%, var(--green-2) 55%, var(--green-3) 100%); }
   #series .inner { display:grid; grid-template-columns:1fr .8fr; gap:64px; align-items:center; }
   @media (max-width:880px){ #series .inner { grid-template-columns:1fr; } }
   #series .h2 { color:var(--cream); }
   #series .body { color:rgba(255,255,255,.62); }
   #series .phone { width:min(290px,74vw); margin:0 auto; }
-  .stats { display:flex; gap:0; margin-top:48px; border-top:1px solid rgba(246,241,227,.15); padding-top:36px; }
+  #series .phone img { width:100%; display:block; }
+  .stats { display:flex; margin-top:48px; border-top:1px solid rgba(246,241,227,.15); padding-top:36px; }
   .stat { flex:1; }
-  .stat b { display:block; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
+  .stat b { display:block; font-family:var(--disp); font-weight:800; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
   .stat span { color:rgba(255,255,255,.5); font-size:.82rem; font-weight:600; letter-spacing:.04em; }
 
-  /* footer */
   footer { background:var(--green-3); padding:70px 28px 48px; }
   .foot-inner { max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:26px; text-align:center; }
+  .footmark { display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none; }
+  .footmark img { width:30px; height:30px; border-radius:22%; }
+  .footmark span { font-family:var(--disp); font-weight:700; font-size:1.1rem; white-space:nowrap; }
   .foot-links { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
   .foot-links a { color:rgba(246,241,227,.65); text-decoration:none; font-size:.88rem; font-weight:600; transition:color .2s; }
   .foot-links a:hover { color:var(--cream); }
@@ -201,18 +232,11 @@
 </head>
 <body>
 
-<nav id="nav">
-  <a class="navmark" href="#">
-    <img src="assets/appicon.png" alt="" style="width:100%;height:100%;border-radius:22%">
-    <span>Top Dish</span>
-  </a>
-  <a class="nav-badge" href="#download">
-    <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-    Get the App
-  </a>
-</nav>
-
 <header>
+  <a class="corner-badge" href="#download" aria-label="Coming soon on the App Store">
+    <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+    <span><span class="b1">Coming soon on the</span><span class="b2">App Store</span></span>
+  </a>
   <div class="hero-wrap">
     <div>
       <span class="cloche reveal"><span class="cloche-mark" style="width:120px"><img src="assets/crown.png" alt="" style="width:36px;height:36px;margin-bottom:-2px"><span class="cm-dome" style="width:98px;height:49px"></span><span class="cm-base" style="width:120px;height:4px;margin-top:1px"></span><span class="cm-shadow" style="width:89px;height:5px;margin-top:3px"></span></span></span>
@@ -226,150 +250,109 @@
         </a>
         <a class="ghost-btn" href="#sightings">How it works</a>
       </div>
-      <p class="hero-note reveal" style="--d:.32s">iPhone · New York City · free</p>
+      <p class="hero-note reveal" style="--d:.32s">iPhone &middot; New York City &middot; free</p>
     </div>
-
     <div class="hero-phone reveal" style="--d:.2s">
       <div>
         <div class="phone" id="heroPhone">
-          <div class="screen" id="screen">
+        <div class="screen">
+          <img class="mapstrip" src="assets/top_bungalow.png" alt="">
+          <div class="sheet" data-sheet>
             <div class="grabber"></div>
-            <div class="shero">
-              <img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/262c9a87-1e7b-4021-97f2-164bcced98ae.webp" alt="Bungalow restaurant, New York">
-              <span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span>
-            </div>
+            <div class="shero"><img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/262c9a87-1e7b-4021-97f2-164bcced98ae.webp" alt="Bungalow"><span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span></div>
             <div class="stitle">
-              <div class="srow">
-                <h3>Bungalow</h3>
-                <div class="acts">
-                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3-3 3 3M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="9"/></svg></span>
-                  <span class="act"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
-                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21M12 3C9.5 5.6 8.1 8.7 8.1 12s1.4 6.4 3.9 9"/></svg></span>
-                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
-                </div>
-              </div>
+              <div class="srow"><h3>Bungalow</h3><div class="acts">
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3-3 3 3M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="9"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21M12 3C9.5 5.6 8.1 8.7 8.1 12s1.4 6.4 3.9 9"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
+            </div></div>
               <p class="smeta"><b class="star">&#9733;</b> <b>4.5</b> (2,563) &nbsp;&middot;&nbsp; $$$$ &nbsp;&middot;&nbsp; Indian &nbsp;&middot;&nbsp; Manhattan</p>
             </div>
-            <div class="podium">
-              <div class="pod"><span class="pring silver">153<i>SIGHTINGS</i></span><b>Rose Kulfi Falooda</b><em>80% LOVED</em></div>
-              <div class="pod gold"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">317<i>SIGHTINGS</i></span><b>Yogurt Kebab</b><em>85% LOVED</em></div>
-              <div class="pod"><span class="pring bronze">121<i>SIGHTINGS</i></span><b>Spice Roasted Pineapple</b><em>79% LOVED</em></div>
-            </div>
+        <div class="podium">
+          <div class="pod" data-target="bg-d1"><span class="pring silver">153<i>SIGHTINGS</i></span><b>Rose Kulfi Falooda</b><em>80% LOVED</em></div>
+          <div class="pod gold" data-target="bg-d0"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">317<i>SIGHTINGS</i></span><b>Yogurt Kebab</b><em>85% LOVED</em></div>
+          <div class="pod" data-target="bg-d2"><span class="pring bronze">121<i>SIGHTINGS</i></span><b>Spice Roasted Pineapple</b><em>79% LOVED</em></div>
+        </div>
             <div class="dlist">
-      <div class="drow open">
-        <div class="dhead">
-          <span class="drank">1</span>
-          <span class="dname">Yogurt Kebab</span>
-          <span class="dnum">317<em>85%</em></span>
+        <div class="drow open" id="bg-d0">
+          <div class="dhead"><span class="drank">1</span><span class="dname">Yogurt Kebab</span>
+            <span class="dnum">317<em>85%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Crisp kataifi shell cracking open to cool, tangy yogurt.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Fried vermicelli-wrapped yogurt, crackling and golden outside with cloud-soft, tangy cream inside. Comes with different dips across visits (mango-cabbage puree, tamarind-green chutney, or beetroot), so ask what&#x27;s currently paired. Regulars call it one of the best openers on the menu and often order it twice. A near-universal favorite appetizer, worth ordering even if you don&#x27;t usually like yogurt.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Crisp kataifi shell cracking open to cool, tangy yogurt.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Fried vermicelli-wrapped yogurt, crackling and golden outside with cloud-soft, tangy cream inside. Comes with different dips across visits (mango-cabbage puree, tamarind-green chutney, or beetroot), so ask what&#x27;s currently paired. Regulars call it one of the best openers on the menu and often order it twice. A near-universal favorite appetizer, worth ordering even if you don&#x27;t usually like yogurt.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">2</span>
-          <span class="dname">Rose Kulfi Falooda</span>
-          <span class="dnum">153<em>80%</em></span>
+        <div class="drow" id="bg-d1">
+          <div class="dhead"><span class="drank">2</span><span class="dname">Rose Kulfi Falooda</span>
+            <span class="dnum">153<em>80%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Rose-pink kulfi threaded with crunchy vermicelli and white chocolate.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Rose-scented kulfi with vermicelli, white chocolate bark, and a drizzle of Rooh Afza syrup, tasting like a fancier update on the classic falooda. Many call it the best dessert of the meal and one of the best faloodas they&#x27;ve had anywhere. Texture can be inconsistent, arriving either too hard to cut or already melting, and the rose flavor leans strong, so ask if you prefer subtler sweetness.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Rose-pink kulfi threaded with crunchy vermicelli and white chocolate.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Rose-scented kulfi with vermicelli, white chocolate bark, and a drizzle of Rooh Afza syrup, tasting like a fancier update on the classic falooda. Many call it the best dessert of the meal and one of the best faloodas they&#x27;ve had anywhere. Texture can be inconsistent, arriving either too hard to cut or already melting, and the rose flavor leans strong, so ask if you prefer subtler sweetness.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">3</span>
-          <span class="dname">Spice Roasted Pineapple</span>
-          <span class="dnum">121<em>79%</em></span>
+        <div class="drow" id="bg-d2">
+          <div class="dhead"><span class="drank">3</span><span class="dname">Spice Roasted Pineapple</span>
+            <span class="dnum">121<em>79%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Charred pineapple bathed in a tangy coconut-mustard seed curry.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Grilled pineapple slow-simmered in a coconut-mustard seed curry, sweet, tangy, and lightly charred at the edges. Pairs well with rice or naan to soak up the sauce. Widely praised as one of the most inventive vegetarian mains on the menu and a top pick for vegans. It leans sweet rather than spicy, so those craving heat might find it milder than the name suggests.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Charred pineapple bathed in a tangy coconut-mustard seed curry.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Grilled pineapple slow-simmered in a coconut-mustard seed curry, sweet, tangy, and lightly charred at the edges. Pairs well with rice or naan to soak up the sauce. Widely praised as one of the most inventive vegetarian mains on the menu and a top pick for vegans. It leans sweet rather than spicy, so those craving heat might find it milder than the name suggests.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">4</span>
-          <span class="dname">Anarkali Chicken</span>
-          <span class="dnum">112<em>88%</em></span>
+        <div class="drow" id="bg-d3">
+          <div class="dhead"><span class="drank">4</span><span class="dname">Anarkali Chicken</span>
+            <span class="dnum">112<em>88%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Tangy-sweet glazed chicken charred at the edges, pomegranate bright.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Boneless chicken glazed tangy-sweet and roasted till the edges char, served with bright pomegranate and mint chutney. Regularly named a table favorite and one of the best chicken starters around, with juicy meat and a balanced, not-too-spicy sauce. Best eaten dragged through the accompanying chutney for extra brightness. A dependable pick even among diners who usually skip appetizer chicken.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Tangy-sweet glazed chicken charred at the edges, pomegranate bright.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Boneless chicken glazed tangy-sweet and roasted till the edges char, served with bright pomegranate and mint chutney. Regularly named a table favorite and one of the best chicken starters around, with juicy meat and a balanced, not-too-spicy sauce. Best eaten dragged through the accompanying chutney for extra brightness. A dependable pick even among diners who usually skip appetizer chicken.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">5</span>
-          <span class="dname">Ammi&#x27;s Lamb Chops</span>
-          <span class="dnum">108<em>81%</em></span>
+        <div class="drow" id="bg-d4">
+          <div class="dhead"><span class="drank">5</span><span class="dname">Ammi&#x27;s Lamb Chops</span>
+            <span class="dnum">108<em>81%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Amchur-crusted lamb chops, char-grilled with a spiced crust.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Bone-in lamb chops rubbed thick with amchur, garlic, and ginger, then roasted till tender with a spiced crust. Frequently called the best lamb chops reviewers have had anywhere, with micro-greens on top for a crisp contrast. Dip pieces in the accompanying sauces for extra flavor. A small handful found them salty or overcooked, but most call it the standout of the small plates.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Amchur-crusted lamb chops, char-grilled with a spiced crust.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Bone-in lamb chops rubbed thick with amchur, garlic, and ginger, then roasted till tender with a spiced crust. Frequently called the best lamb chops reviewers have had anywhere, with micro-greens on top for a crisp contrast. Dip pieces in the accompanying sauces for extra flavor. A small handful found them salty or overcooked, but most call it the standout of the small plates.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">6</span>
-          <span class="dname">Banarasi Puri</span>
-          <span class="dnum">105<em>73%</em></span>
+        <div class="drow" id="bg-d5">
+          <div class="dhead"><span class="drank">6</span><span class="dname">Banarasi Puri</span>
+            <span class="dnum">105<em>73%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Crisp puris soaked in tangy tamarind and pineapple raita.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Crispy puris piled with tangy yogurt, pineapple raita, tamarind and cilantro chutneys, delivering a different flavor with almost every bite. Many call it the best chaat they&#x27;ve had in the city. Because the yogurt sits underneath, the puris soften fast, so eat it soon after it arrives. A few found it dry or unremarkable, but most consider it a standout starter.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Crisp puris soaked in tangy tamarind and pineapple raita.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Crispy puris piled with tangy yogurt, pineapple raita, tamarind and cilantro chutneys, delivering a different flavor with almost every bite. Many call it the best chaat they&#x27;ve had in the city. Because the yogurt sits underneath, the puris soften fast, so eat it soon after it arrives. A few found it dry or unremarkable, but most consider it a standout starter.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">7</span>
-          <span class="dname">Mango Three Ways</span>
-          <span class="dnum">89<em>80%</em></span>
+        <div class="drow" id="bg-d6">
+          <div class="dhead"><span class="drank">7</span><span class="dname">Mango Three Ways</span>
+            <span class="dnum">89<em>80%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Fresh mango mousse, ice cream, and rasmalai on one plate.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Mango served three ways on one plate, usually a mousse, ice cream, and rasmalai, so you get refreshing, nostalgic, and indulgent versions of the fruit in a single dessert. Frequently called one of the best desserts on the menu and worth ordering even if you&#x27;re full. A handful found the mango flavor too subtle or the ice cream already melted, but most call it a showstopper finish.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Fresh mango mousse, ice cream, and rasmalai on one plate.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Mango served three ways on one plate, usually a mousse, ice cream, and rasmalai, so you get refreshing, nostalgic, and indulgent versions of the fruit in a single dessert. Frequently called one of the best desserts on the menu and worth ordering even if you&#x27;re full. A handful found the mango flavor too subtle or the ice cream already melted, but most call it a showstopper finish.</p>
-        </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">8</span>
-          <span class="dname">Chicken Amritsari</span>
-          <span class="dnum">88<em>66%</em></span>
+        <div class="drow" id="bg-d7">
+          <div class="dhead"><span class="drank">8</span><span class="dname">Chicken Amritsari</span>
+            <span class="dnum">88<em>66%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Creamy tomato gravy clinging to tender roasted chicken pieces.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">A butter-chicken style curry with a modern twist, creamy tomato gravy over tender chicken, evoking Old Delhi flavors for many. Some reviewers call it their best dish of the night; others feel it&#x27;s simply butter chicken renamed and wish for more punch or heat. It occasionally arrives lukewarm, so ask for it piping hot. Order it if you love classic butter chicken done well.</p>
+          </div></div>
         </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Creamy tomato gravy clinging to tender roasted chicken pieces.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">A butter-chicken style curry with a modern twist, creamy tomato gravy over tender chicken, evoking Old Delhi flavors for many. Some reviewers call it their best dish of the night; others feel it&#x27;s simply butter chicken renamed and wish for more punch or heat. It occasionally arrives lukewarm, so ask for it piping hot. Order it if you love classic butter chicken done well.</p>
+        <div class="drow" id="bg-d8">
+          <div class="dhead"><span class="drank">9</span><span class="dname">Dal Bungalow</span>
+            <span class="dnum">77<em>86%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Velvety black lentils simmered low and slow till creamy.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Slow-cooked black lentils finished creamy and rich, often called the best dal reviewers have had outside of Delhi or India entirely. Comforting, mildly spiced, and great scooped up with naan or rice. Reportedly the chef&#x27;s grandmother&#x27;s recipe, and many say they&#x27;d return just for a bowl of it. A rare miss or two calls it under-salted, but the overwhelming verdict is a standout side.</p>
+          </div></div>
         </div></div>
-      </div>
-      <div class="drow">
-        <div class="dhead">
-          <span class="drank">9</span>
-          <span class="dname">Dal Bungalow</span>
-          <span class="dnum">77<em>86%</em></span>
-        </div>
-        <div class="dbody"><div class="dbody-in">
-          <p class="dquote">&ldquo;<u>Velvety black lentils simmered low and slow till creamy.</u>&rdquo;</p>
-          <p class="dnoteslabel">FIELD NOTES</p>
-          <p class="dnotes">Slow-cooked black lentils finished creamy and rich, often called the best dal reviewers have had outside of Delhi or India entirely. Comforting, mildly spiced, and great scooped up with naan or rice. Reportedly the chef&#x27;s grandmother&#x27;s recipe, and many say they&#x27;d return just for a bowl of it. A rare miss or two calls it under-salted, but the overwhelming verdict is a standout side.</p>
-        </div></div>
-      </div>
-            </div>
             <p class="sreport">&#9873;&nbsp; See something wrong? Report it</p>
           </div>
           <div class="scroll-cue" id="scrollCue">Scroll &darr;</div>
         </div>
-        <p class="phone-cap">Live preview &mdash; scroll the phone, tap a dish</p>
+        </div>
+        <p class="phone-cap">Live preview &mdash; scroll the sheet, tap a dish or a podium coin</p>
       </div>
     </div>
   </div>
@@ -380,16 +363,16 @@
     <div>
       <p class="kicker reveal">DISHES EARN SIGHTINGS</p>
       <h2 class="h2 reveal" style="--d:.06s">Real reviews,<br>read for you.</h2>
-      <p class="body reveal" style="--d:.12s">Every time a diner singles out a dish in a review, that's a sighting. We've read millions of reviews across 18,000+ New York restaurants, so the most-sighted dish sits at the top of every menu — with field notes on exactly how to order it.</p>
+      <p class="body reveal" style="--d:.12s">Every time a diner singles out a dish in a review, that's a sighting. We've read millions of reviews across 18,000+ New York restaurants, so the most-sighted dish sits at the top of every menu &mdash; with field notes on exactly how to order it.</p>
     </div>
     <div>
       <div class="quotes">
-        <div class="quote reveal">&ldquo;Get the pastrami — thank me later&rdquo;</div>
+        <div class="quote reveal">&ldquo;Get the pastrami &mdash; thank me later&rdquo;</div>
         <div class="quote reveal" style="--d:.12s">&ldquo;The hot dog alone is worth the trip&rdquo;</div>
         <div class="quote reveal" style="--d:.24s">&ldquo;I still dream about that carbonara&rdquo;</div>
       </div>
       <div class="counter-row reveal" style="--d:.35s">
-        <svg class="crown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg>
+        <svg class="crown-lg" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg>
         <span class="count" id="counter" data-target="2741">0</span>
         <span class="count-label">sightings</span>
       </div>
@@ -400,15 +383,256 @@
 <section id="screens">
   <div class="inner">
     <div class="head">
-      <p class="kicker reveal">THE APP</p>
+      <p class="kicker reveal">TRY IT RIGHT HERE</p>
       <h2 class="h2 reveal" style="--d:.06s">A map that knows what to order.</h2>
-      <p class="body reveal" style="--d:.12s">The most-sighted dishes are crowned right on the map. Open any spot and the menu is already ranked.</p>
+      <p class="body reveal" style="--d:.12s">These are live previews &mdash; scroll the sheets, filter the list, check off a slice.</p>
     </div>
     <div class="gallery">
-      <figure class="shot reveal"><div class="phone"><img loading="lazy" srcset="assets/01_home_map_500.png 500w, assets/01_home_map_760.png 760w, assets/01_home_map_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/01_home_map_760.png" alt="Map of New York with crowned top dishes and a nearby list" width="660" height="1434"></div><figcaption>Crowned on the map</figcaption></figure>
-      <figure class="shot reveal" style="--d:.1s"><div class="phone"><img loading="lazy" srcset="assets/07_detail_katz_500.png 500w, assets/07_detail_katz_760.png 760w, assets/07_detail_katz_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/07_detail_katz_760.png" alt="Katz's Delicatessen page with pastrami at 10,093 sightings" width="660" height="1434"></div><figcaption>10,093 sightings deep</figcaption></figure>
-      <figure class="shot reveal" style="--d:.2s"><div class="phone"><img loading="lazy" srcset="assets/04_detail_carbone_500.png 500w, assets/04_detail_carbone_760.png 760w, assets/04_detail_carbone_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/04_detail_carbone_760.png" alt="Carbone page with spicy rigatoni ranked first" width="660" height="1434"></div><figcaption>Field notes on every dish</figcaption></figure>
-      <figure class="shot reveal" style="--d:.3s"><div class="phone"><img loading="lazy" srcset="assets/10_checklist_pizza_500.png 500w, assets/10_checklist_pizza_760.png 760w, assets/10_checklist_pizza_1140.png 1140w" sizes="(max-width: 640px) 42vw, 250px" src="assets/10_checklist_pizza_760.png" alt="The Pizza Canon checklist with a numbered route map" width="660" height="1434"></div><figcaption>Trails worth finishing</figcaption></figure>
+      <figure class="shot reveal"><div class="phone">
+        <div class="screen">
+          <img class="mapstrip" src="assets/map_home.png" alt="">
+          <div class="sheet drawer" data-sheet>
+            <div class="grabber dark"></div>
+            <p class="dtitle">Near you <span>&middot; 5,052 spots</span></p>
+            <div class="dsearch">&#128269;&nbsp; Search dishes, restaurants &amp; areas</div>
+            <div class="dchips">
+              <span class="dchip on" data-p="all">&#8645; Top Dish</span><span class="dchip" data-p="$">$</span><span class="dchip" data-p="$$">$$</span><span class="dchip" data-p="$$$">$$$</span><span class="dchip" data-p="$$$$">$$$$</span>
+            </div>
+            <div class="hlist">
+            <div class="hrow" data-price="$$$">
+              <img class="hthumb" loading="lazy" src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/53675e70-8cbb-4fa8-89b1-429772df1ca9-t.webp" alt="">
+              <div class="hmid">
+                <b>Katz&#x27;s Delicatessen</b>
+                <span class="hmeta"><i class="star">&#9733;</i> 4.5 (53,253) &middot; $$$ &middot; American</span>
+                <span class="hdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Pastrami <u>10,093 sightings</u></span>
+              </div>
+              <span class="hdist">4.5 mi</span>
+            </div>
+            <div class="hrow" data-price="$$">
+              <img class="hthumb" loading="lazy" src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/b0d5fdf4-ccf9-43ca-9a66-b6b97108098f-t.webp" alt="">
+              <div class="hmid">
+                <b>Junior&#x27;s Restaurant &amp; Bakery</b>
+                <span class="hmeta"><i class="star">&#9733;</i> 4.4 (15,553) &middot; $$ &middot; American</span>
+                <span class="hdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Cheesecake <u>3,855 sightings</u></span>
+              </div>
+              <span class="hdist">0.1 mi</span>
+            </div>
+            <div class="hrow" data-price="$">
+              <img class="hthumb" loading="lazy" src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/b427f54b-3397-4ac2-99a1-6e64b8107e33-t.webp" alt="">
+              <div class="hmid">
+                <b>Gray&#x27;s Papaya</b>
+                <span class="hmeta"><i class="star">&#9733;</i> 4.2 (6,524) &middot; $ &middot; Hot dog</span>
+                <span class="hdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Hot Dog <u>2,741 sightings</u></span>
+              </div>
+              <span class="hdist">1.4 mi</span>
+            </div>
+            <div class="hrow" data-price="$$">
+              <img class="hthumb" loading="lazy" src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/182b54c0-aab0-4103-bd07-be6191a92a2b-t.webp" alt="">
+              <div class="hmid">
+                <b>Dominique Ansel Bakery</b>
+                <span class="hmeta"><i class="star">&#9733;</i> 4.3 (9,155) &middot; $$ &middot; Bakery</span>
+                <span class="hdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Cronut <u>2,575 sightings</u></span>
+              </div>
+              <span class="hdist">2.4 mi</span>
+            </div></div>
+          </div>
+        </div></div><figcaption>Filter what&rsquo;s near you</figcaption></figure>
+      <figure class="shot reveal" style="--d:.12s"><div class="phone">
+        <div class="screen">
+          <img class="mapstrip" src="assets/top_katz.png" alt="">
+          <div class="sheet" data-sheet>
+            <div class="grabber"></div>
+            <div class="shero"><img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/53675e70-8cbb-4fa8-89b1-429772df1ca9.webp" alt="Katz&#x27;s Delicatessen"><span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span></div>
+            <div class="stitle">
+              <div class="srow"><h3>Katz&#x27;s Delicatessen</h3><div class="acts">
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3-3 3 3M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="9"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21M12 3C9.5 5.6 8.1 8.7 8.1 12s1.4 6.4 3.9 9"/></svg></span>
+              <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
+            </div></div>
+              <p class="smeta"><b class="star">&#9733;</b> <b>4.5</b> (53,253) &nbsp;&middot;&nbsp; $$$ &nbsp;&middot;&nbsp; American &nbsp;&middot;&nbsp; Manhattan</p>
+            </div>
+        <div class="podium">
+          <div class="pod" data-target="kz-d1"><span class="pring silver">1,409<i>SIGHTINGS</i></span><b>Corned Beef</b><em>71% LOVED</em></div>
+          <div class="pod gold" data-target="kz-d0"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">10,093<i>SIGHTINGS</i></span><b>Pastrami</b><em>88% LOVED</em></div>
+          <div class="pod" data-target="kz-d2"><span class="pring bronze">1,245<i>SIGHTINGS</i></span><b>Pickles</b><em>79% LOVED</em></div>
+        </div>
+            <div class="dlist">
+        <div class="drow open" id="kz-d0">
+          <div class="dhead"><span class="drank">1</span><span class="dname">Pastrami</span>
+            <span class="dnum">10,093<em>88%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Thick-cut, smoky pastrami piled high, juice soaking into warm rye.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Watch the cutter hand-slice it fresh and take the free taste before you order. Thick-cut, smoky, peppery meat with a well-marbled fat cap, piled absurdly high on rye with mustard. Portions are massive, easily enough for two, so splitting is the move. Ask for a fattier cut if you want it juicier, or lean if you don&#x27;t. Worth the wait and the roughly $25-30 price.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d1">
+          <div class="dhead"><span class="drank">2</span><span class="dname">Corned Beef</span>
+            <span class="dnum">1,409<em>71%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Thick-sliced corned beef, salty and tender, stacked on soft rye.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Less famous than the pastrami but plenty of regulars order it instead, and it comes just as huge. At its best it&#x27;s tender, juicy, and mildly sweet, sliced thick and piled onto rye with mustard and pickles. Skip the mail-order version if you can; a wide range of reviewers found shipped corned beef tough, dry, or full of fat, while the in-house sandwich is far more consistent.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d2">
+          <div class="dhead"><span class="drank">3</span><span class="dname">Pickles</span>
+            <span class="dnum">1,245<em>79%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Crisp half-sour and full-sour pickles, cold, garlicky, and tangy.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Comes free with your sandwich in two styles: a milder half-sour and a stronger, garlicky full-sour, both cold and crunchy. They&#x27;re the built-in palate cleanser for all that fatty meat, and more than a few reviewers say they&#x27;re the best part of the meal. A handful found a batch that tasted more like plain cucumber than pickle, so quality can vary visit to visit, but most plates disappear fast.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d3">
+          <div class="dhead"><span class="drank">4</span><span class="dname">Reuben</span>
+            <span class="dnum">1,074<em>82%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Melted Swiss and tangy sauerkraut smothering hot pastrami on rye.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Pastrami or corned beef piled with melted Swiss, tangy sauerkraut, and Russian dressing on rye, big enough that two people can split one and still be full. The meat itself gets consistent praise, but the bread is a known weak point: it&#x27;s often untoasted and turns soggy fast under all that dressing and kraut, so eat it quickly rather than letting it sit. Ask for pastrami over corned beef if given the choice.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d4">
+          <div class="dhead"><span class="drank">5</span><span class="dname">Matzo Ball Soup</span>
+            <span class="dnum">643<em>79%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Fluffy matzo ball adrift in golden, herb-flecked chicken broth.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">A big, fluffy matzo ball afloat in warm, herby chicken broth, usually ordered as a lighter counterpart to the massive sandwiches. Most people call it comforting, well-seasoned, and nostalgic, tasting close to homemade. It travels less well than in person, though; shipped or delivered orders occasionally arrive salty or diluted, so it&#x27;s best eaten fresh at the counter. Pairing it with a half sandwich is a popular way to order.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d5">
+          <div class="dhead"><span class="drank">6</span><span class="dname">Brisket</span>
+            <span class="dnum">612<em>71%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Thick, hand-carved brisket slices, fall-apart tender and rich with gravy.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Hand-carved, thick slices piled onto rye, often finished with a side of gravy or a smear of mustard to cut the richness. Portions are massive, easily splittable between two, and plenty of regulars call it the best beef they&#x27;ve ever had. The one thing to watch: dryness is the complaint that recurs most, so ask for extra gravy or try the half brisket, half pastrami combo instead.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d6">
+          <div class="dhead"><span class="drank">7</span><span class="dname">French Fries</span>
+            <span class="dnum">496<em>51%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Thick, double-fried steak fries, crisp outside, pillowy potato within.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Thick-cut steak fries, double-fried for a crisp shell around a soft potato center, served in a portion big enough for two or three to share. They&#x27;re ordered at a separate counter from the sandwiches, so grab them early rather than waiting until you&#x27;re seated. The recurring gripe is temperature: a fair number of orders arrive lukewarm or cold by the time they hit the table, so ask for them fresh out of the fryer.</p>
+          </div></div>
+        </div>
+        <div class="drow" id="kz-d7">
+          <div class="dhead"><span class="drank">8</span><span class="dname">Sandwich</span>
+            <span class="dnum">344<em>82%</em></span></div>
+          <div class="dbody"><div class="dbody-in">
+            <p class="dquote">&ldquo;<u>Towering hand-sliced meat between fresh rye, piled higher than the bun.</u>&rdquo;</p>
+            <p class="dnoteslabel">FIELD NOTES</p><p class="dnotes">Katz&#x27;s signature move: mountains of hand-sliced meat stacked between rye, built to feed two people easily. Regulars tip the cutter for a better cut or a free taste before ordering, and splitting one with a friend is the smart way to go given the size and the price. It&#x27;s not cheap, running well over $20, but almost nobody who&#x27;s had one calls it a letdown.</p>
+          </div></div>
+        </div></div>
+            <p class="sreport">&#9873;&nbsp; See something wrong? Report it</p>
+          </div>
+          
+        </div></div><figcaption>10,093 sightings deep</figcaption></figure>
+      <figure class="shot reveal" style="--d:.24s"><div class="phone">
+        <div class="screen">
+          <img class="mapstrip" src="assets/map_pizza.png" alt="">
+          <div class="sheet plist-sheet" data-sheet>
+            <div class="grabber dark"></div>
+            <p class="ptitle">&#127829; The Pizza Canon</p>
+            <p class="ptag">The slices New York argues about. Settle it yourself.</p>
+            <p class="pcount"><b id="pizzaCount">0</b> of 28 collected &mdash; tap to check off</p>
+            <div class="plist">
+            <div class="prow">
+              <span class="prank">1</span>
+              <div class="pmid"><b>Totonno&#x27;s</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.1 &middot; Coney Island</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>White Pizza &middot; 13</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">2</span>
+              <div class="pmid"><b>Di Fara Pizza</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Midwood</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Square Slice &middot; 181</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">3</span>
+              <div class="pmid"><b>F&amp;F Pizzeria</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.5 &middot; Carroll Gardens</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Regular Pizza &middot; 42</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">4</span>
+              <div class="pmid"><b>Lucali</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Carroll Gardens</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Plain Pie &middot; 1,393</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">5</span>
+              <div class="pmid"><b>L&amp;B Spumoni Gardens</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.4 &middot; Brooklyn Heights</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Sicilian Pizza &middot; 93</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">6</span>
+              <div class="pmid"><b>Grimaldi&#x27;s Pizzeria</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Brooklyn Heights</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Margherita Pizza &middot; 174</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">7</span>
+              <div class="pmid"><b>Juliana’s</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Brooklyn Heights</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Margherita Pizza &middot; 398</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">8</span>
+              <div class="pmid"><b>Kesté Pizza e Vino</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Manhattan</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Gluten-Free Pizza &middot; 248</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">9</span>
+              <div class="pmid"><b>Scarr&#x27;s Pizza</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.4 &middot; Manhattan</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Hot Honey &middot; 580</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">10</span>
+              <div class="pmid"><b>Ceres</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.1 &middot; Manhattan</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Cheese Pizza &middot; 118</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">11</span>
+              <div class="pmid"><b>Lombardi&#x27;s</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Manhattan</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Original Margherita &middot; 278</span>
+              </div>
+              <span class="pcheck"></span>
+            </div>
+            <div class="prow">
+              <span class="prank">12</span>
+              <div class="pmid"><b>Rubirosa</b>
+                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Manhattan</span>
+                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Tie Dye Pizza &middot; 596</span>
+              </div>
+              <span class="pcheck"></span>
+            </div></div>
+          </div>
+        </div></div><figcaption>Check off the Pizza Canon</figcaption></figure>
     </div>
   </div>
 </section>
@@ -418,7 +642,7 @@
     <div>
       <p class="kicker reveal">EXPLORER SERIES</p>
       <h2 class="h2 reveal" style="--d:.06s">25 dish trails across the city.</h2>
-      <p class="body reveal" style="--d:.12s">The Pizza Canon. Bagel Royalty. The Dumpling Trail. Curated runs of the city's essential plates — check them off as you eat your way through, and heart the spots you're saving for later.</p>
+      <p class="body reveal" style="--d:.12s">The Pizza Canon. Bagel Royalty. The Dumpling Trail. Curated runs of the city&rsquo;s essential plates &mdash; check them off as you eat your way through, and heart the spots you&rsquo;re saving for later.</p>
       <div class="stats">
         <div class="stat reveal"><b data-count="18000">0</b><span>RESTAURANTS MAPPED</span></div>
         <div class="stat reveal" style="--d:.1s"><b data-count="17000">0</b><span>TOP DISHES CROWNED</span></div>
@@ -433,48 +657,21 @@
 
 <footer>
   <div class="foot-inner">
-    <a class="navmark" href="#">
-      <img src="assets/appicon.png" alt="" style="width:100%;height:100%;border-radius:22%">
-      <span>Top Dish</span>
-    </a>
+    <a class="footmark" href="#"><img src="assets/appicon.png" alt=""><span>Top Dish</span></a>
     <div class="foot-links">
       <a href="/support/">Support</a>
       <a href="/legal/">Privacy Policy</a>
       <a href="mailto:topdishapplication@gmail.com">Contact</a>
     </div>
-    <p class="foot-fine">© 2026 Top Dish. All rights reserved. Made with appetite in New York.</p>
+    <p class="foot-fine">&copy; 2026 Top Dish. All rights reserved. Made with appetite in New York.</p>
   </div>
 </footer>
 
 <script>
-
-  // Interactive hero phone: tap a dish to expand, drag/wheel to scroll, cue fades on first scroll
-  const screenEl = document.getElementById('screen');
-  const cue = document.getElementById('scrollCue');
-  if (screenEl) {
-    screenEl.addEventListener('scroll', () => cue.classList.add('hide'), { passive:true, once:true });
-    document.querySelectorAll('.drow').forEach(row => {
-      row.addEventListener('click', () => { if (!dragged) row.classList.toggle('open'); });
-    });
-    let down = false, dragged = false, startY = 0, startTop = 0;
-    screenEl.addEventListener('pointerdown', e => { down = true; dragged = false; startY = e.clientY; startTop = screenEl.scrollTop; });
-    addEventListener('pointermove', e => {
-      if (!down) return;
-      if (Math.abs(e.clientY - startY) > 6) { dragged = true; screenEl.classList.add('dragging'); }
-      if (dragged) screenEl.scrollTop = startTop - (e.clientY - startY);
-    });
-    addEventListener('pointerup', () => { down = false; screenEl.classList.remove('dragging'); setTimeout(() => dragged = false, 0); });
-  }
-
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.16 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Nav turns solid past the hero
-  const nav = document.getElementById('nav');
-  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), { passive: true });
 
   // Gentle hero-phone parallax
   const hp = document.getElementById('heroPhone');
@@ -485,7 +682,7 @@
     }, { passive: true });
   }
 
-  // Count-up (eased) when a counter scrolls into view
+  // Count-up
   function countUp(el, target, suffix = '', dur = 1400) {
     const t0 = performance.now();
     (function tick(now) {
@@ -494,15 +691,71 @@
       if (p < 1) requestAnimationFrame(tick);
     })(t0);
   }
-  const cio = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) {
-      const el = e.target;
-      const target = +(el.dataset.target || el.dataset.count);
-      countUp(el, target, el.dataset.count && target >= 1000 ? '+' : '');
+  const cio = new IntersectionObserver((es) => {
+    for (const e of es) if (e.isIntersecting) {
+      const el = e.target, t = +(el.dataset.target || el.dataset.count);
+      countUp(el, t, el.dataset.count && t >= 1000 ? '+' : '');
       cio.unobserve(el);
     }
   }, { threshold: 0.6 });
   document.querySelectorAll('#counter,[data-count]').forEach(el => cio.observe(el));
+
+  // ----- interactive phones -----
+  let dragged = false;
+  document.querySelectorAll('[data-sheet]').forEach(sheet => {
+    let down = false, startY = 0, startTop = 0;
+    sheet.addEventListener('pointerdown', e => { down = true; dragged = false; startY = e.clientY; startTop = sheet.scrollTop; });
+    addEventListener('pointermove', e => {
+      if (!down) return;
+      if (Math.abs(e.clientY - startY) > 6) { dragged = true; sheet.classList.add('dragging'); }
+      if (dragged) sheet.scrollTop = startTop - (e.clientY - startY);
+    });
+    addEventListener('pointerup', () => { down = false; sheet.classList.remove('dragging'); setTimeout(() => dragged = false, 0); });
+  });
+
+  // dish rows expand/collapse
+  document.querySelectorAll('.drow').forEach(row =>
+    row.addEventListener('click', () => { if (!dragged) row.classList.toggle('open'); }));
+
+  // podium coins: expand that dish and scroll the sheet to it (like the app)
+  document.querySelectorAll('.pod[data-target]').forEach(pod =>
+    pod.addEventListener('click', () => {
+      if (dragged) return;
+      const row = document.getElementById(pod.dataset.target);
+      const sheet = pod.closest('[data-sheet]');
+      row.classList.add('open');
+      setTimeout(() => sheet.scrollTo({ top: row.offsetTop - 52, behavior: 'smooth' }), 60);
+    }));
+
+  // scroll cue fades on first interaction
+  const cue = document.getElementById('scrollCue');
+  if (cue) {
+    const s = cue.closest('.screen').querySelector('[data-sheet]');
+    const hide = () => cue.classList.add('hide');
+    s.addEventListener('scroll', hide, { passive: true, once: true });
+    s.addEventListener('pointerdown', hide, { once: true });
+  }
+
+  // home drawer price chips filter the list
+  document.querySelectorAll('.dchip').forEach(chip =>
+    chip.addEventListener('click', () => {
+      if (dragged) return;
+      const chips = chip.closest('.dchips');
+      chips.querySelectorAll('.dchip').forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+      const p = chip.dataset.p;
+      chip.closest('[data-sheet]').querySelectorAll('.hrow').forEach(r =>
+        r.style.display = (p === 'all' || r.dataset.price === p) ? '' : 'none');
+    }));
+
+  // pizza checklist: tap to collect
+  const pcount = document.getElementById('pizzaCount');
+  document.querySelectorAll('.prow').forEach(row =>
+    row.addEventListener('click', () => {
+      if (dragged) return;
+      row.classList.toggle('done');
+      pcount.textContent = document.querySelectorAll('.prow.done').length;
+    }));
 </script>
 </body>
 </html>
