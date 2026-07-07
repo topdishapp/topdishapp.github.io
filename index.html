@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Dish — Every menu, distilled to the dishes worth ordering</title>
+<meta name="description" content="Top Dish reads millions of real reviews so the most-loved dish sits at the top of every menu. NYC's 18,000+ restaurants, mapped dish-first.">
+<meta property="og:title" content="Top Dish">
+<meta property="og:description" content="Every menu in the city, distilled to the dishes actually worth ordering.">
+<meta property="og:image" content="https://topdishapp.github.io/assets/02_detail_bungalow.png">
+<meta property="og:url" content="https://topdishapp.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3A2D'/%3E%3Cpath d='M14 40a18 18 0 0 1 36 0z' fill='%23F6F1E3'/%3E%3Crect x='10' y='41' width='44' height='4' rx='2' fill='%23C8A95C'/%3E%3Cpath d='M26 22l3-7 3 4 3-4 3 7z' fill='%23E9B949'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-1:#28503C; --green-2:#1F3A2D; --green-3:#112218;
+    --cream:#F6F1E3; --paper:#F6F1E8; --ink:#1B1714; --sub:#857C6E;
+    --gold:#C8A95C; --gold-ink:#C2912F; --red:#9E2B25; --hairline:#EDEAE2;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Inter',-apple-system,sans-serif; color:var(--ink); background:var(--paper);
+         -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  .serif { font-family:'Fraunces',Georgia,serif; }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,.9,.3,1), transform .8s cubic-bezier(.22,.9,.3,1); transition-delay:var(--d,0s); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition:none; opacity:1; transform:none; } }
+
+  /* ---------- nav ---------- */
+  nav { position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center;
+        justify-content:space-between; padding:18px 28px; transition:background .35s, box-shadow .35s, padding .35s; }
+  nav.solid { background:rgba(17,34,24,.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+              padding:12px 28px; box-shadow:0 1px 0 rgba(255,255,255,.06); }
+  .navmark { display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none; }
+  .navmark svg { width:26px; height:26px; }
+  .navmark span { font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; letter-spacing:.01em; }
+  .navlinks { display:flex; gap:26px; }
+  .navlinks a { color:rgba(246,241,227,.75); text-decoration:none; font-size:.86rem; font-weight:600; letter-spacing:.02em; transition:color .2s; }
+  .navlinks a:hover { color:var(--cream); }
+  @media (max-width:640px){ .navlinks a:not(.navcta){ display:none; } }
+
+  /* ---------- hero ---------- */
+  header { position:relative; min-height:100svh; display:flex; align-items:center;
+           background:radial-gradient(120% 90% at 50% 18%, var(--green-1) 0%, var(--green-2) 45%, var(--green-3) 100%); overflow:hidden; }
+  header::after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:120px 28px 40px; width:100%;
+               display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
+  @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:110px; } }
+  .cloche { width:120px; margin-bottom:34px; filter:drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
+  @media (max-width:880px){ .cloche { margin:0 auto 30px; } }
+  h1 { font-family:'Fraunces',serif; font-weight:600; color:var(--cream); font-size:clamp(2.5rem, 5.4vw, 4rem); line-height:1.08; letter-spacing:-.01em; }
+  .hero-sub { color:rgba(255,255,255,.68); font-size:clamp(1.02rem, 1.6vw, 1.18rem); line-height:1.65; margin:20px 0 34px; max-width:30em; }
+  @media (max-width:880px){ .hero-sub { margin-left:auto; margin-right:auto; } }
+  .cta-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  @media (max-width:880px){ .cta-row { justify-content:center; } }
+  .appstore-badge { display:inline-flex; align-items:center; gap:11px; background:#000; color:#fff; text-decoration:none;
+    border:1px solid rgba(255,255,255,.32); border-radius:13px; padding:10px 22px 10px 16px; transition:transform .25s, box-shadow .25s; }
+  .appstore-badge:hover { transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.35); }
+  .appstore-badge svg { width:26px; height:26px; }
+  .appstore-badge .b1 { display:block; font-size:.62rem; letter-spacing:.04em; opacity:.85; }
+  .appstore-badge .b2 { display:block; font-size:1.12rem; font-weight:600; letter-spacing:-.01em; margin-top:1px; }
+  .ghost-btn { color:var(--cream); text-decoration:none; font-weight:600; font-size:.95rem; padding:14px 22px;
+    border:1px solid rgba(246,241,227,.35); border-radius:13px; transition:background .25s, border-color .25s; }
+  .ghost-btn:hover { background:rgba(246,241,227,.08); border-color:rgba(246,241,227,.6); }
+  .hero-note { margin-top:18px; color:rgba(255,255,255,.42); font-size:.8rem; }
+
+  .hero-phone { position:relative; display:flex; justify-content:center; }
+  .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden;
+           box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); line-height:0; }
+  .phone img { width:100%; height:auto; display:block; }
+  .hero-phone .phone { width:min(320px, 78vw); transform:rotate(4deg); will-change:transform; }
+  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { transform:rotate(0); width:min(280px,74vw); } }
+
+  /* ---------- sections ---------- */
+  section { padding:110px 28px; }
+  .inner { max-width:1120px; margin:0 auto; }
+  .kicker { font-size:.72rem; font-weight:700; letter-spacing:.24em; color:var(--gold-ink); margin-bottom:14px; }
+  .h2 { font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.9rem, 3.6vw, 2.7rem); line-height:1.15; letter-spacing:-.01em; }
+  .body { color:var(--sub); font-size:1.05rem; line-height:1.7; margin-top:16px; max-width:34em; }
+
+  /* sightings */
+  #sightings .inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  @media (max-width:880px){ #sightings .inner { grid-template-columns:1fr; gap:44px; } }
+  .quotes { display:flex; flex-direction:column; gap:12px; }
+  .quote { background:#fff; border:1px solid var(--hairline); border-radius:15px; padding:13px 18px;
+           font-style:italic; font-weight:500; font-size:.95rem; color:rgba(27,23,20,.85);
+           box-shadow:0 6px 18px rgba(0,0,0,.05); width:fit-content; max-width:100%; }
+  .quote:nth-child(2){ margin-left:34px; } .quote:nth-child(3){ margin-left:68px; }
+  @media (max-width:640px){ .quote:nth-child(2){margin-left:20px;} .quote:nth-child(3){margin-left:40px;} }
+  .counter-row { display:flex; align-items:baseline; gap:12px; margin-top:34px; }
+  .crown { width:30px; height:30px; align-self:center; }
+  .count { font-family:'Fraunces',serif; font-weight:600; font-size:clamp(3rem,6vw,4.2rem); color:var(--gold-ink); font-variant-numeric:tabular-nums; }
+  .count-label { color:var(--sub); font-weight:600; }
+
+  /* screens gallery */
+  #screens { background:#fff; }
+  #screens .head { text-align:center; margin-bottom:70px; }
+  #screens .head .body { margin-left:auto; margin-right:auto; }
+  .gallery { display:flex; justify-content:center; align-items:flex-start; gap:34px; flex-wrap:wrap; }
+  .shot { width:min(250px, 42vw); }
+  .shot:nth-child(2){ margin-top:56px; } .shot:nth-child(3){ margin-top:20px; }
+  .shot:nth-child(4){ margin-top:72px; } .shot:nth-child(5){ margin-top:36px; }
+  .shot .phone { border-radius:40px; border-width:7px; transition:transform .45s cubic-bezier(.22,.9,.3,1), box-shadow .45s; }
+  .shot .phone:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 50px 90px rgba(0,0,0,.28); }
+  .shot figcaption { text-align:center; margin-top:16px; font-size:.85rem; font-weight:600; color:var(--sub); }
+
+  /* series */
+  #series { background:radial-gradient(120% 100% at 50% 0%, var(--green-1) 0%, var(--green-2) 55%, var(--green-3) 100%); }
+  #series .inner { display:grid; grid-template-columns:1fr .8fr; gap:64px; align-items:center; }
+  @media (max-width:880px){ #series .inner { grid-template-columns:1fr; } }
+  #series .h2 { color:var(--cream); }
+  #series .body { color:rgba(255,255,255,.62); }
+  #series .phone { width:min(290px,74vw); margin:0 auto; }
+  .stats { display:flex; gap:0; margin-top:48px; border-top:1px solid rgba(246,241,227,.15); padding-top:36px; }
+  .stat { flex:1; }
+  .stat b { display:block; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
+  .stat span { color:rgba(255,255,255,.5); font-size:.82rem; font-weight:600; letter-spacing:.04em; }
+
+  /* footer */
+  footer { background:var(--green-3); padding:70px 28px 48px; }
+  .foot-inner { max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:26px; text-align:center; }
+  .foot-links { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+  .foot-links a { color:rgba(246,241,227,.65); text-decoration:none; font-size:.88rem; font-weight:600; transition:color .2s; }
+  .foot-links a:hover { color:var(--cream); }
+  .foot-fine { color:rgba(246,241,227,.32); font-size:.78rem; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="navmark" href="#">
+    <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1F3A2D"/><path d="M14 40a18 18 0 0 1 36 0z" fill="#F6F1E3"/><rect x="10" y="41" width="44" height="4" rx="2" fill="#C8A95C"/><path d="M26 22l3-7 3 4 3-4 3 7z" fill="#E9B949"/></svg>
+    <span>Top Dish</span>
+  </a>
+  <div class="navlinks">
+    <a href="#sightings">Sightings</a>
+    <a href="#screens">The App</a>
+    <a href="/support/">Support</a>
+    <a class="navcta" href="#download">Get the App</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-wrap">
+    <div>
+      <svg class="cloche reveal" viewBox="0 0 200 150">
+        <path d="M88 30 L97 8 L106 20 L115 8 L124 30 Z" fill="#E9B949"/>
+        <circle cx="97" cy="8" r="4" fill="#E9B949"/><circle cx="115" cy="8" r="4" fill="#E9B949"/><circle cx="106" cy="18" r="3.4" fill="#E9B949"/>
+        <path d="M24 112 A82 82 0 0 1 188 112 Z" transform="translate(-6,0)" fill="#F6F1E3"/>
+        <rect x="6" y="115" width="188" height="7" rx="3.5" fill="#C8A95C"/>
+        <ellipse cx="100" cy="136" rx="74" ry="6" fill="rgba(0,0,0,.25)"/>
+      </svg>
+      <h1 class="reveal" style="--d:.08s">The best dish,<br>on every menu.</h1>
+      <p class="hero-sub reveal" style="--d:.16s">Top Dish reads millions of real diner reviews so you never order wrong again. Every restaurant in New York, distilled to the plates people cross town for.</p>
+      <div class="cta-row reveal" style="--d:.24s" id="download">
+        <!-- Paste the App Store URL into href when the app is live -->
+        <a class="appstore-badge" href="#download" aria-label="Download on the App Store">
+          <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="b1">Coming soon on the</span><span class="b2">App Store</span></span>
+        </a>
+        <a class="ghost-btn" href="#sightings">How it works</a>
+      </div>
+      <p class="hero-note reveal" style="--d:.32s">iPhone · New York City · free</p>
+    </div>
+    <div class="hero-phone reveal" style="--d:.2s">
+      <div class="phone" id="heroPhone"><img src="assets/02_detail_bungalow.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
+    </div>
+  </div>
+</header>
+
+<section id="sightings">
+  <div class="inner">
+    <div>
+      <p class="kicker reveal">DISHES EARN SIGHTINGS</p>
+      <h2 class="h2 reveal" style="--d:.06s">Real reviews,<br>read for you.</h2>
+      <p class="body reveal" style="--d:.12s">Every time a diner singles out a dish in a review, that's a sighting. We've read millions of reviews across 18,000+ New York restaurants, so the most-sighted dish sits at the top of every menu — with field notes on exactly how to order it.</p>
+    </div>
+    <div>
+      <div class="quotes">
+        <div class="quote reveal">&ldquo;Get the pastrami — thank me later&rdquo;</div>
+        <div class="quote reveal" style="--d:.12s">&ldquo;The hot dog alone is worth the trip&rdquo;</div>
+        <div class="quote reveal" style="--d:.24s">&ldquo;I still dream about that carbonara&rdquo;</div>
+      </div>
+      <div class="counter-row reveal" style="--d:.35s">
+        <svg class="crown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg>
+        <span class="count" id="counter" data-target="2741">0</span>
+        <span class="count-label">sightings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="inner">
+    <div class="head">
+      <p class="kicker reveal">THE APP</p>
+      <h2 class="h2 reveal" style="--d:.06s">A map that knows what to order.</h2>
+      <p class="body reveal" style="--d:.12s">The most-sighted dishes are crowned right on the map. Open any spot and the menu is already ranked.</p>
+    </div>
+    <div class="gallery">
+      <figure class="shot reveal"><div class="phone"><img loading="lazy" src="assets/01_home_map.png" alt="Map of New York with crowned top dishes and a nearby list" width="660" height="1434"></div><figcaption>Crowned on the map</figcaption></figure>
+      <figure class="shot reveal" style="--d:.1s"><div class="phone"><img loading="lazy" src="assets/07_detail_katz.png" alt="Katz's Delicatessen page with pastrami at 10,093 sightings" width="660" height="1434"></div><figcaption>10,093 sightings deep</figcaption></figure>
+      <figure class="shot reveal" style="--d:.2s"><div class="phone"><img loading="lazy" src="assets/04_detail_carbone.png" alt="Carbone page with spicy rigatoni ranked first" width="660" height="1434"></div><figcaption>Field notes on every dish</figcaption></figure>
+      <figure class="shot reveal" style="--d:.3s"><div class="phone"><img loading="lazy" src="assets/10_checklist_pizza.png" alt="The Pizza Canon checklist with a numbered route map" width="660" height="1434"></div><figcaption>Trails worth finishing</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="series">
+  <div class="inner">
+    <div>
+      <p class="kicker reveal">EXPLORER SERIES</p>
+      <h2 class="h2 reveal" style="--d:.06s">25 dish trails across the city.</h2>
+      <p class="body reveal" style="--d:.12s">The Pizza Canon. Bagel Royalty. The Dumpling Trail. Curated runs of the city's essential plates — check them off as you eat your way through, and heart the spots you're saving for later.</p>
+      <div class="stats">
+        <div class="stat reveal"><b data-count="18000">0</b><span>RESTAURANTS MAPPED</span></div>
+        <div class="stat reveal" style="--d:.1s"><b data-count="17000">0</b><span>TOP DISHES CROWNED</span></div>
+        <div class="stat reveal" style="--d:.2s"><b data-count="25">0</b><span>DISH TRAILS</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="--d:.15s">
+      <div class="phone"><img loading="lazy" src="assets/09_explore_series.png" alt="Explorer Series screen with curated dish checklists" width="660" height="1434"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <a class="navmark" href="#">
+      <svg viewBox="0 0 64 64" width="30" height="30"><rect width="64" height="64" rx="14" fill="#28503C"/><path d="M14 40a18 18 0 0 1 36 0z" fill="#F6F1E3"/><rect x="10" y="41" width="44" height="4" rx="2" fill="#C8A95C"/><path d="M26 22l3-7 3 4 3-4 3 7z" fill="#E9B949"/></svg>
+      <span>Top Dish</span>
+    </a>
+    <div class="foot-links">
+      <a href="/support/">Support</a>
+      <a href="/legal/">Privacy Policy</a>
+      <a href="mailto:topdishapplication@gmail.com">Contact</a>
+    </div>
+    <p class="foot-fine">© 2026 Top Dish. All rights reserved. Made with appetite in New York.</p>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.16 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav turns solid past the hero
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), { passive: true });
+
+  // Gentle hero-phone parallax
+  const hp = document.getElementById('heroPhone');
+  if (hp && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    addEventListener('scroll', () => {
+      const y = Math.min(scrollY, innerHeight);
+      hp.style.transform = `rotate(4deg) translateY(${y * 0.12}px)`;
+    }, { passive: true });
+  }
+
+  // Count-up (eased) when a counter scrolls into view
+  function countUp(el, target, suffix = '', dur = 1400) {
+    const t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const cio = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) {
+      const el = e.target;
+      const target = +(el.dataset.target || el.dataset.count);
+      countUp(el, target, el.dataset.count && target >= 1000 ? '+' : '');
+      cio.unobserve(el);
+    }
+  }, { threshold: 0.6 });
+  document.querySelectorAll('#counter,[data-count]').forEach(el => cio.observe(el));
+</script>
+</body>
+</html>
