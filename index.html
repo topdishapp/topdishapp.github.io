@@ -73,8 +73,8 @@
   .phone { border-radius:52px; border:9px solid #101010; background:#101010; overflow:hidden;
            box-shadow:0 40px 90px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.3); line-height:0; }
   .phone img { width:100%; height:auto; display:block; }
-  .hero-phone .phone { width:min(380px, 80vw); will-change:transform; }
-  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(300px,74vw); } }
+  .hero-phone .phone { width:min(380px, 80vw); transform:rotate(3deg); will-change:transform; }
+  @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(300px,74vw); transform:rotate(2deg); } }
 
   /* ---------- sections ---------- */
   section { padding:110px 28px; }
@@ -168,7 +168,7 @@
       <p class="hero-note reveal" style="--d:.32s">iPhone · New York City · free</p>
     </div>
     <div class="hero-phone reveal" style="--d:.2s">
-      <div class="phone" id="heroPhone"><img srcset="assets/02_detail_bungalow_500.png 500w, assets/02_detail_bungalow_760.png 760w, assets/02_detail_bungalow_1140.png 1140w" sizes="(max-width: 880px) 74vw, 380px" src="assets/02_detail_bungalow_760.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
+      <div class="phone" id="heroPhone"><img srcset="assets/02_detail_bungalow_500.png 500w, assets/02_detail_bungalow_760.png 760w, assets/02_detail_bungalow_1140.png 1140w" sizes="(max-width: 880px) 110vw, 570px" src="assets/02_detail_bungalow_1140.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
     </div>
   </div>
 </header>
@@ -260,7 +260,7 @@
   if (hp && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     addEventListener('scroll', () => {
       const y = Math.min(scrollY, innerHeight);
-      hp.style.transform = `translateY(${y * 0.1}px)`;
+      hp.style.transform = `rotate(3deg) translateY(${y * 0.1}px)`;
     }, { passive: true });
   }
 
