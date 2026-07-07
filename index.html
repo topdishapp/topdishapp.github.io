@@ -21,7 +21,6 @@
     --disp:'Plus Jakarta Sans',-apple-system,sans-serif;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
   body { font-family:'Inter',-apple-system,sans-serif; color:var(--ink); background:var(--paper);
          -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,.9,.3,1), transform .8s cubic-bezier(.22,.9,.3,1); transition-delay:var(--d,0s); }
@@ -672,6 +671,11 @@
     for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.16 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Smooth scrolling for in-page links only (fragment landings stay instant).
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const t = document.getElementById(a.getAttribute('href').slice(1));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  }));
   // Fragment landings / conservative observers: force-reveal whatever is on screen.
   const revealNow = () => document.querySelectorAll('.reveal:not(.in)').forEach(el => {
     const r = el.getBoundingClientRect();
