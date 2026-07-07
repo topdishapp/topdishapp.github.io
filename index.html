@@ -9,10 +9,10 @@
 <meta property="og:description" content="Every menu in the city, distilled to the dishes actually worth ordering.">
 <meta property="og:image" content="https://topdishapp.github.io/assets/02_detail_bungalow_1140.png">
 <meta property="og:url" content="https://topdishapp.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3A2D'/%3E%3Cpath d='M14 40a18 18 0 0 1 36 0z' fill='%23F6F1E3'/%3E%3Crect x='10' y='41' width='44' height='4' rx='2' fill='%23C8A95C'/%3E%3Cpath d='M26 22l3-7 3 4 3-4 3 7z' fill='%23E9B949'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/appicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-1:#28503C; --green-2:#1F3A2D; --green-3:#112218;
@@ -23,7 +23,14 @@
   html { scroll-behavior:smooth; }
   body { font-family:'Inter',-apple-system,sans-serif; color:var(--ink); background:var(--paper);
          -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-  .serif { font-family:'Fraunces',Georgia,serif; }
+  .serif { font-family:'Plus Jakarta Sans',-apple-system,sans-serif; }
+
+
+  .cloche-mark { display:flex; flex-direction:column; align-items:center; }
+  .cm-dome { background:#F6F1E3; border:1.2px solid rgba(0,0,0,.15); border-bottom:none;
+             border-radius:999px 999px 0 0; }
+  .cm-base { background:#C8A95C; border-radius:999px; }
+  .cm-shadow { background:rgba(0,0,0,.20); border-radius:50%; filter:blur(1px); }
 
   /* ---------- reveal-on-scroll ---------- */
   .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,.9,.3,1), transform .8s cubic-bezier(.22,.9,.3,1); transition-delay:var(--d,0s); }
@@ -36,12 +43,14 @@
   nav.solid { background:rgba(17,34,24,.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
               padding:12px 28px; box-shadow:0 1px 0 rgba(255,255,255,.06); }
   .navmark { display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none; }
-  .navmark svg { width:26px; height:26px; }
-  .navmark span { font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; letter-spacing:.01em; }
-  .navlinks { display:flex; gap:26px; }
-  .navlinks a { color:rgba(246,241,227,.75); text-decoration:none; font-size:.86rem; font-weight:600; letter-spacing:.02em; transition:color .2s; }
-  .navlinks a:hover { color:var(--cream); }
-  @media (max-width:640px){ .navlinks a:not(.navcta){ display:none; } }
+  .navmark img, .navmark svg { width:26px; height:26px; }
+  .navmark span { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1.15rem; letter-spacing:.01em; }
+  .nav-badge { display:inline-flex; align-items:center; gap:9px; background:#000; color:#fff; text-decoration:none;
+    font-size:.92rem; font-weight:700; font-family:'Plus Jakarta Sans',sans-serif;
+    border:1px solid rgba(255,255,255,.32); border-radius:12px; padding:10px 18px;
+    transition:transform .25s, box-shadow .25s; }
+  .nav-badge:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.35); }
+  .nav-badge svg { width:16px; height:16px; }
 
   /* ---------- hero ---------- */
   header { position:relative; min-height:100svh; display:flex; align-items:center;
@@ -51,9 +60,9 @@
   .hero-wrap { position:relative; max-width:1120px; margin:0 auto; padding:120px 28px 40px; width:100%;
                display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
   @media (max-width:880px){ .hero-wrap { grid-template-columns:1fr; text-align:center; padding-top:110px; } }
-  .cloche { width:120px; margin-bottom:34px; filter:drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
+  .cloche { display:inline-block; margin-bottom:34px; filter:drop-shadow(0 18px 30px rgba(0,0,0,.35)); }
   @media (max-width:880px){ .cloche { margin:0 auto 30px; } }
-  h1 { font-family:'Fraunces',serif; font-weight:600; color:var(--cream); font-size:clamp(2.5rem, 5.4vw, 4rem); line-height:1.08; letter-spacing:-.01em; }
+  h1 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; color:var(--cream); font-size:clamp(2.5rem, 5.4vw, 4rem); line-height:1.08; letter-spacing:-.01em; }
   .hero-sub { color:rgba(255,255,255,.68); font-size:clamp(1.02rem, 1.6vw, 1.18rem); line-height:1.65; margin:20px 0 34px; max-width:30em; }
   @media (max-width:880px){ .hero-sub { margin-left:auto; margin-right:auto; } }
   .cta-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
@@ -76,11 +85,71 @@
   .hero-phone .phone { width:min(380px, 80vw); transform:rotate(3deg); will-change:transform; }
   @media (max-width:880px){ .hero-phone { margin-top:12px; } .hero-phone .phone { width:min(300px,74vw); transform:rotate(2deg); } }
 
+  
+  /* ---------- interactive hero screen ---------- */
+  .phone .screen { height:824px; overflow-y:auto; overscroll-behavior:contain; background:#fff;
+                   border-radius:43px; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+                   font-family:'Inter',sans-serif; line-height:1.45; cursor:grab; user-select:none; }
+  .phone .screen::-webkit-scrollbar { display:none; }
+  .phone .screen.dragging { cursor:grabbing; }
+  @media (max-width:880px){ .phone .screen { height:651px; } }
+  .grabber { position:sticky; top:8px; z-index:5; width:38px; height:5px; margin:0 auto -5px;
+             border-radius:3px; background:rgba(255,255,255,.85); box-shadow:0 1px 4px rgba(0,0,0,.25); }
+  .shero { position:relative; height:300px; }
+  .shero img { width:100%; height:118%; object-fit:cover; object-position:center 30%; display:block;
+               -webkit-mask-image:linear-gradient(to bottom, #000 62%, transparent 98%);
+               mask-image:linear-gradient(to bottom, #000 62%, transparent 98%); pointer-events:none; }
+  .chip { position:absolute; top:16px; width:30px; height:30px; border-radius:50%; background:rgba(0,0,0,.5);
+          border:.5px solid rgba(255,255,255,.5); color:#fff; font-size:.8rem; display:flex; align-items:center; justify-content:center; }
+  .cl { left:14px; } .cr { right:14px; }
+  .stitle { padding:0 18px 4px; margin-top:-34px; position:relative; }
+  .srow { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .stitle h3 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.75rem; color:#1B1714; letter-spacing:-.01em; }
+  .acts { display:flex; gap:6px; }
+  .act { width:30px; height:30px; border-radius:50%; background:#fff; border:1px solid #EDEAE2;
+         box-shadow:0 2px 6px rgba(0,0,0,.07); color:#9E2B25; display:flex; align-items:center; justify-content:center; }
+  .act svg { width:14px; height:14px; }
+  .smeta { font-size:.72rem; color:#857C6E; margin-top:5px; }
+  .smeta b { color:#1B1714; font-weight:600; } .smeta .star { color:#E9B949; }
+  .podium { display:flex; align-items:flex-end; justify-content:center; gap:8px; padding:18px 14px 6px; }
+  .pod { flex:1; text-align:center; padding:12px 6px 10px; border-radius:14px; border:1px solid #EDEAE2; background:#FAF8F4; position:relative; }
+  .pod.gold { background:#F6F1E3; padding-top:16px; padding-bottom:14px; }
+  .pcrown { width:17px; height:14px; display:block; margin:0 auto 2px; }
+  .pring { display:flex; flex-direction:column; align-items:center; justify-content:center; width:56px; height:56px;
+           margin:0 auto 8px; border-radius:50%; border:2px solid; font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.05rem; }
+  .pring i { font-style:normal; font-size:.32rem; letter-spacing:.12em; color:#857C6E; font-family:'Inter',sans-serif; font-weight:700; }
+  .pring.silver { border-color:#B9B4AA; color:#8B857A; }
+  .pring.goldr { border-color:#C8A95C; color:#C2912F; width:62px; height:62px; font-size:1.2rem; }
+  .pring.bronze { border-color:#C08F5F; color:#A5713C; }
+  .pod b { display:block; font-size:.66rem; font-weight:600; color:#1B1714; line-height:1.25; min-height:2.2em; }
+  .pod em { font-style:normal; font-size:.56rem; font-weight:700; color:#4F7D5D; letter-spacing:.04em; }
+  .dlist { padding:10px 0 0; }
+  .drow { border-top:1px solid #F3F0E9; padding:0 18px; cursor:pointer; }
+  .dhead { display:flex; align-items:baseline; gap:10px; padding:13px 0; }
+  .drank { font-size:.68rem; color:#A59B8B; font-weight:600; width:12px; }
+  .dname { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.02rem; color:#1B1714; flex:1; }
+  .dnum { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.02rem; color:#1B1714; text-align:right; }
+  .dnum em { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:.6rem; font-weight:700; color:#C2912F; }
+  .dbody { max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.22,.9,.3,1); }
+  .drow.open .dbody { max-height:560px; }
+  .dbody-in { padding:2px 0 16px; }
+  .dquote { font-family:'Plus Jakarta Sans',sans-serif; font-style:italic; font-weight:500; font-size:.92rem; color:#1B1714; line-height:1.5; }
+  .dquote u { text-decoration-color:rgba(158,43,37,.65); text-decoration-thickness:2px; text-underline-offset:3px; }
+  .dnoteslabel { font-size:.56rem; font-weight:700; letter-spacing:.16em; color:#9E2B25; margin:10px 0 4px; }
+  .dnotes { font-size:.78rem; color:#4A443C; line-height:1.55; }
+  .sreport { text-align:center; font-size:.7rem; font-weight:600; color:#857C6E; padding:16px 0 30px; }
+  .scroll-cue { position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:6;
+                background:rgba(17,34,24,.82); color:#F6F1E3; font-size:.72rem; font-weight:600;
+                padding:7px 14px; border-radius:999px; pointer-events:none; transition:opacity .5s; backdrop-filter:blur(6px); }
+  .scroll-cue.hide { opacity:0; }
+  .hero-phone .phone { position:relative; }
+  .phone-cap { text-align:center; color:rgba(255,255,255,.45); font-size:.78rem; margin-top:16px; }
+
   /* ---------- sections ---------- */
   section { padding:110px 28px; }
   .inner { max-width:1120px; margin:0 auto; }
   .kicker { font-size:.72rem; font-weight:700; letter-spacing:.24em; color:var(--gold-ink); margin-bottom:14px; }
-  .h2 { font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.9rem, 3.6vw, 2.7rem); line-height:1.15; letter-spacing:-.01em; }
+  .h2 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(1.9rem, 3.6vw, 2.7rem); line-height:1.15; letter-spacing:-.01em; }
   .body { color:var(--sub); font-size:1.05rem; line-height:1.7; margin-top:16px; max-width:34em; }
 
   /* sightings */
@@ -94,7 +163,7 @@
   @media (max-width:640px){ .quote:nth-child(2){margin-left:20px;} .quote:nth-child(3){margin-left:40px;} }
   .counter-row { display:flex; align-items:baseline; gap:12px; margin-top:34px; }
   .crown { width:30px; height:30px; align-self:center; }
-  .count { font-family:'Fraunces',serif; font-weight:600; font-size:clamp(3rem,6vw,4.2rem); color:var(--gold-ink); font-variant-numeric:tabular-nums; }
+  .count { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(3rem,6vw,4.2rem); color:var(--gold-ink); font-variant-numeric:tabular-nums; }
   .count-label { color:var(--sub); font-weight:600; }
 
   /* screens gallery */
@@ -118,7 +187,7 @@
   #series .phone { width:min(290px,74vw); margin:0 auto; }
   .stats { display:flex; gap:0; margin-top:48px; border-top:1px solid rgba(246,241,227,.15); padding-top:36px; }
   .stat { flex:1; }
-  .stat b { display:block; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
+  .stat b { display:block; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--cream); }
   .stat span { color:rgba(255,255,255,.5); font-size:.82rem; font-weight:600; letter-spacing:.04em; }
 
   /* footer */
@@ -134,27 +203,19 @@
 
 <nav id="nav">
   <a class="navmark" href="#">
-    <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1F3A2D"/><path d="M14 40a18 18 0 0 1 36 0z" fill="#F6F1E3"/><rect x="10" y="41" width="44" height="4" rx="2" fill="#C8A95C"/><path d="M26 22l3-7 3 4 3-4 3 7z" fill="#E9B949"/></svg>
+    <img src="assets/appicon.png" alt="" style="width:100%;height:100%;border-radius:22%">
     <span>Top Dish</span>
   </a>
-  <div class="navlinks">
-    <a href="#sightings">Sightings</a>
-    <a href="#screens">The App</a>
-    <a href="/support/">Support</a>
-    <a class="navcta" href="#download">Get the App</a>
-  </div>
+  <a class="nav-badge" href="#download">
+    <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+    Get the App
+  </a>
 </nav>
 
 <header>
   <div class="hero-wrap">
     <div>
-      <svg class="cloche reveal" viewBox="0 0 200 150">
-        <path d="M88 30 L97 8 L106 20 L115 8 L124 30 Z" fill="#E9B949"/>
-        <circle cx="97" cy="8" r="4" fill="#E9B949"/><circle cx="115" cy="8" r="4" fill="#E9B949"/><circle cx="106" cy="18" r="3.4" fill="#E9B949"/>
-        <path d="M24 112 A82 82 0 0 1 188 112 Z" transform="translate(-6,0)" fill="#F6F1E3"/>
-        <rect x="6" y="115" width="188" height="7" rx="3.5" fill="#C8A95C"/>
-        <ellipse cx="100" cy="136" rx="74" ry="6" fill="rgba(0,0,0,.25)"/>
-      </svg>
+      <span class="cloche reveal"><span class="cloche-mark" style="width:120px"><img src="assets/crown.png" alt="" style="width:36px;height:36px;margin-bottom:-2px"><span class="cm-dome" style="width:98px;height:49px"></span><span class="cm-base" style="width:120px;height:4px;margin-top:1px"></span><span class="cm-shadow" style="width:89px;height:5px;margin-top:3px"></span></span></span>
       <h1 class="reveal" style="--d:.08s">The best dish,<br>on every menu.</h1>
       <p class="hero-sub reveal" style="--d:.16s">Top Dish reads millions of real diner reviews so you never order wrong again. Every restaurant in New York, distilled to the plates people cross town for.</p>
       <div class="cta-row reveal" style="--d:.24s" id="download">
@@ -167,8 +228,149 @@
       </div>
       <p class="hero-note reveal" style="--d:.32s">iPhone · New York City · free</p>
     </div>
+
     <div class="hero-phone reveal" style="--d:.2s">
-      <div class="phone" id="heroPhone"><img srcset="assets/02_detail_bungalow_500.png 500w, assets/02_detail_bungalow_760.png 760w, assets/02_detail_bungalow_1140.png 1140w" sizes="(max-width: 880px) 110vw, 570px" src="assets/02_detail_bungalow_1140.png" alt="Top Dish restaurant page for Bungalow showing the top three dishes by sightings" width="660" height="1434"></div>
+      <div>
+        <div class="phone" id="heroPhone">
+          <div class="screen" id="screen">
+            <div class="grabber"></div>
+            <div class="shero">
+              <img src="https://topdishes-app-content.s3.us-east-1.amazonaws.com/photos/v1/262c9a87-1e7b-4021-97f2-164bcced98ae.webp" alt="Bungalow restaurant, New York">
+              <span class="chip cl">&#10005;</span><span class="chip cr">&#8943;</span>
+            </div>
+            <div class="stitle">
+              <div class="srow">
+                <h3>Bungalow</h3>
+                <div class="acts">
+                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3-3 3 3M12 8v8"/><rect x="3" y="3" width="18" height="18" rx="9"/></svg></span>
+                  <span class="act"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></span>
+                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21M12 3C9.5 5.6 8.1 8.7 8.1 12s1.4 6.4 3.9 9"/></svg></span>
+                  <span class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
+                </div>
+              </div>
+              <p class="smeta"><b class="star">&#9733;</b> <b>4.5</b> (2,563) &nbsp;&middot;&nbsp; $$$$ &nbsp;&middot;&nbsp; Indian &nbsp;&middot;&nbsp; Manhattan</p>
+            </div>
+            <div class="podium">
+              <div class="pod"><span class="pring silver">153<i>SIGHTINGS</i></span><b>Rose Kulfi Falooda</b><em>80% LOVED</em></div>
+              <div class="pod gold"><svg class="pcrown" viewBox="0 0 40 34"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/><circle cx="8" cy="7" r="3" fill="#E9B949"/><circle cx="20" cy="4" r="3" fill="#E9B949"/><circle cx="32" cy="7" r="3" fill="#E9B949"/></svg><span class="pring goldr">317<i>SIGHTINGS</i></span><b>Yogurt Kebab</b><em>85% LOVED</em></div>
+              <div class="pod"><span class="pring bronze">121<i>SIGHTINGS</i></span><b>Spice Roasted Pineapple</b><em>79% LOVED</em></div>
+            </div>
+            <div class="dlist">
+      <div class="drow open">
+        <div class="dhead">
+          <span class="drank">1</span>
+          <span class="dname">Yogurt Kebab</span>
+          <span class="dnum">317<em>85%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Crisp kataifi shell cracking open to cool, tangy yogurt.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Fried vermicelli-wrapped yogurt, crackling and golden outside with cloud-soft, tangy cream inside. Comes with different dips across visits (mango-cabbage puree, tamarind-green chutney, or beetroot), so ask what&#x27;s currently paired. Regulars call it one of the best openers on the menu and often order it twice. A near-universal favorite appetizer, worth ordering even if you don&#x27;t usually like yogurt.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">2</span>
+          <span class="dname">Rose Kulfi Falooda</span>
+          <span class="dnum">153<em>80%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Rose-pink kulfi threaded with crunchy vermicelli and white chocolate.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Rose-scented kulfi with vermicelli, white chocolate bark, and a drizzle of Rooh Afza syrup, tasting like a fancier update on the classic falooda. Many call it the best dessert of the meal and one of the best faloodas they&#x27;ve had anywhere. Texture can be inconsistent, arriving either too hard to cut or already melting, and the rose flavor leans strong, so ask if you prefer subtler sweetness.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">3</span>
+          <span class="dname">Spice Roasted Pineapple</span>
+          <span class="dnum">121<em>79%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Charred pineapple bathed in a tangy coconut-mustard seed curry.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Grilled pineapple slow-simmered in a coconut-mustard seed curry, sweet, tangy, and lightly charred at the edges. Pairs well with rice or naan to soak up the sauce. Widely praised as one of the most inventive vegetarian mains on the menu and a top pick for vegans. It leans sweet rather than spicy, so those craving heat might find it milder than the name suggests.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">4</span>
+          <span class="dname">Anarkali Chicken</span>
+          <span class="dnum">112<em>88%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Tangy-sweet glazed chicken charred at the edges, pomegranate bright.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Boneless chicken glazed tangy-sweet and roasted till the edges char, served with bright pomegranate and mint chutney. Regularly named a table favorite and one of the best chicken starters around, with juicy meat and a balanced, not-too-spicy sauce. Best eaten dragged through the accompanying chutney for extra brightness. A dependable pick even among diners who usually skip appetizer chicken.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">5</span>
+          <span class="dname">Ammi&#x27;s Lamb Chops</span>
+          <span class="dnum">108<em>81%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Amchur-crusted lamb chops, char-grilled with a spiced crust.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Bone-in lamb chops rubbed thick with amchur, garlic, and ginger, then roasted till tender with a spiced crust. Frequently called the best lamb chops reviewers have had anywhere, with micro-greens on top for a crisp contrast. Dip pieces in the accompanying sauces for extra flavor. A small handful found them salty or overcooked, but most call it the standout of the small plates.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">6</span>
+          <span class="dname">Banarasi Puri</span>
+          <span class="dnum">105<em>73%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Crisp puris soaked in tangy tamarind and pineapple raita.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Crispy puris piled with tangy yogurt, pineapple raita, tamarind and cilantro chutneys, delivering a different flavor with almost every bite. Many call it the best chaat they&#x27;ve had in the city. Because the yogurt sits underneath, the puris soften fast, so eat it soon after it arrives. A few found it dry or unremarkable, but most consider it a standout starter.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">7</span>
+          <span class="dname">Mango Three Ways</span>
+          <span class="dnum">89<em>80%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Fresh mango mousse, ice cream, and rasmalai on one plate.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Mango served three ways on one plate, usually a mousse, ice cream, and rasmalai, so you get refreshing, nostalgic, and indulgent versions of the fruit in a single dessert. Frequently called one of the best desserts on the menu and worth ordering even if you&#x27;re full. A handful found the mango flavor too subtle or the ice cream already melted, but most call it a showstopper finish.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">8</span>
+          <span class="dname">Chicken Amritsari</span>
+          <span class="dnum">88<em>66%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Creamy tomato gravy clinging to tender roasted chicken pieces.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">A butter-chicken style curry with a modern twist, creamy tomato gravy over tender chicken, evoking Old Delhi flavors for many. Some reviewers call it their best dish of the night; others feel it&#x27;s simply butter chicken renamed and wish for more punch or heat. It occasionally arrives lukewarm, so ask for it piping hot. Order it if you love classic butter chicken done well.</p>
+        </div></div>
+      </div>
+      <div class="drow">
+        <div class="dhead">
+          <span class="drank">9</span>
+          <span class="dname">Dal Bungalow</span>
+          <span class="dnum">77<em>86%</em></span>
+        </div>
+        <div class="dbody"><div class="dbody-in">
+          <p class="dquote">&ldquo;<u>Velvety black lentils simmered low and slow till creamy.</u>&rdquo;</p>
+          <p class="dnoteslabel">FIELD NOTES</p>
+          <p class="dnotes">Slow-cooked black lentils finished creamy and rich, often called the best dal reviewers have had outside of Delhi or India entirely. Comforting, mildly spiced, and great scooped up with naan or rice. Reportedly the chef&#x27;s grandmother&#x27;s recipe, and many say they&#x27;d return just for a bowl of it. A rare miss or two calls it under-salted, but the overwhelming verdict is a standout side.</p>
+        </div></div>
+      </div>
+            </div>
+            <p class="sreport">&#9873;&nbsp; See something wrong? Report it</p>
+          </div>
+          <div class="scroll-cue" id="scrollCue">Scroll &darr;</div>
+        </div>
+        <p class="phone-cap">Live preview &mdash; scroll the phone, tap a dish</p>
+      </div>
     </div>
   </div>
 </header>
@@ -232,7 +434,7 @@
 <footer>
   <div class="foot-inner">
     <a class="navmark" href="#">
-      <svg viewBox="0 0 64 64" width="30" height="30"><rect width="64" height="64" rx="14" fill="#28503C"/><path d="M14 40a18 18 0 0 1 36 0z" fill="#F6F1E3"/><rect x="10" y="41" width="44" height="4" rx="2" fill="#C8A95C"/><path d="M26 22l3-7 3 4 3-4 3 7z" fill="#E9B949"/></svg>
+      <img src="assets/appicon.png" alt="" style="width:100%;height:100%;border-radius:22%">
       <span>Top Dish</span>
     </a>
     <div class="foot-links">
@@ -245,6 +447,25 @@
 </footer>
 
 <script>
+
+  // Interactive hero phone: tap a dish to expand, drag/wheel to scroll, cue fades on first scroll
+  const screenEl = document.getElementById('screen');
+  const cue = document.getElementById('scrollCue');
+  if (screenEl) {
+    screenEl.addEventListener('scroll', () => cue.classList.add('hide'), { passive:true, once:true });
+    document.querySelectorAll('.drow').forEach(row => {
+      row.addEventListener('click', () => { if (!dragged) row.classList.toggle('open'); });
+    });
+    let down = false, dragged = false, startY = 0, startTop = 0;
+    screenEl.addEventListener('pointerdown', e => { down = true; dragged = false; startY = e.clientY; startTop = screenEl.scrollTop; });
+    addEventListener('pointermove', e => {
+      if (!down) return;
+      if (Math.abs(e.clientY - startY) > 6) { dragged = true; screenEl.classList.add('dragging'); }
+      if (dragged) screenEl.scrollTop = startTop - (e.clientY - startY);
+    });
+    addEventListener('pointerup', () => { down = false; screenEl.classList.remove('dragging'); setTimeout(() => dragged = false, 0); });
+  }
+
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
