@@ -36,8 +36,8 @@
            background:radial-gradient(120% 90% at 50% 18%, var(--green-1) 0%, var(--green-2) 45%, var(--green-3) 100%); overflow:hidden; }
   .brandmark { position:absolute; top:20px; left:24px; z-index:10; display:flex; align-items:center; gap:10px;
                color:var(--cream); text-decoration:none; }
-  .brandmark img { width:32px; height:32px; border-radius:24%; }
-  .brandmark span { font-family:var(--disp); font-weight:700; font-size:1.08rem; white-space:nowrap; }
+  .brandmark img { width:64px; height:64px; border-radius:24%; }
+  .brandmark span { font-family:var(--disp); font-weight:700; font-size:1.35rem; white-space:nowrap; }
   .corner-badge { position:absolute; top:18px; right:24px; z-index:10; display:inline-flex; align-items:center; gap:10px;
     background:#000; color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.32); border-radius:12px;
     padding:8px 16px 8px 13px; transition:transform .25s, box-shadow .25s; }
@@ -80,6 +80,9 @@
             font-family:'Inter',sans-serif; line-height:1.45; user-select:none; }
   .fit { position:absolute; top:0; left:0; width:362px; height:780px; transform-origin:top left; }
   .mapstrip { position:absolute; top:0; left:0; width:100%; display:block; }
+  .mapwrap { position:absolute; top:0; left:0; width:100%; overflow:hidden; cursor:grab; touch-action:none; }
+  .mapwrap:active { cursor:grabbing; }
+  .mappan { position:absolute; top:0; left:0; width:135%; will-change:transform; pointer-events:none; }
   .sheet { position:absolute; top:58px; left:0; right:0; bottom:0; background:#fff; border-radius:24px 24px 0 0;
            overflow-y:auto; overscroll-behavior:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch;
            box-shadow:0 -10px 30px rgba(0,0,0,.25); cursor:grab; }
@@ -140,7 +143,7 @@
                 padding:6px 13px; border-radius:999px; pointer-events:none; transition:opacity .5s; backdrop-filter:blur(6px); }
   .scroll-cue.hide { opacity:0; }
 
-  .sheet.drawer { top:44%; border-radius:26px 26px 0 0; }
+  .sheet.drawer { top:37%; border-radius:26px 26px 0 0; }
   .dtitle { font-family:var(--disp); font-weight:800; font-size:1.05rem; padding:16px 16px 0; }
   .dtitle span { color:var(--sub); font-weight:600; font-size:.8rem; }
   .dsearch { margin:10px 16px 0; background:#F4EFE7; border-radius:12px; padding:9px 12px; font-size:.74rem; color:#A59B8B; }
@@ -167,8 +170,10 @@
   .scards { position:absolute; top:118px; bottom:0; left:0; right:0; overflow-y:auto; overscroll-behavior:contain;
             scrollbar-width:none; padding:2px 14px 20px; cursor:grab; }
   .scards::-webkit-scrollbar { display:none; }
-  .scard { display:flex; align-items:center; gap:11px; background:#FAF8F4; border:1px solid var(--hairline);
+  .scard { display:flex; opacity:.92; align-items:center; gap:11px; background:#FAF8F4; border:1px solid var(--hairline);
            border-radius:16px; padding:12px 12px; margin-bottom:9px; cursor:pointer; transition:transform .15s; }
+  .scard[data-sid] { opacity:1; }
+  .scard:not([data-sid]) { cursor:default; }
   .scard:active { transform:scale(.98); }
   .semoji { font-size:1.35rem; width:40px; height:40px; background:#fff; border:1px solid var(--hairline);
             border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; }
@@ -410,7 +415,7 @@
     <div class="gallery">
       <figure class="shot reveal"><div class="phone">
         <div class="screen"><div class="fit">
-          <img class="mapstrip" src="assets/map_home.png" alt="">
+          <div class="mapwrap" style="height:52%"><img class="mappan" src="assets/map_home.png" alt=""></div>
           <div class="sheet drawer" data-sheet>
             <div class="grabber dark"></div>
             <p class="dtitle">Near you <span>&middot; 5,052 spots</span></p>
@@ -569,37 +574,37 @@
             <p class="xtitle">Explorer Series</p>
             <p class="xsub">25 dish trails &middot; 604 spots to collect</p>
             <div class="scards">
-          <div class="scard snav">
+          <div class="scard" data-sid="pizza-canon">
             <span class="semoji">🍕</span>
             <div class="smid"><b>The Pizza Canon</b><span>The slices New York argues about. Settle it yourself.</span>
               <span class="sprog"><i></i><em>0/28</em></span></div>
             <span class="schev">&#8250;</span>
           </div>
-          <div class="scard">
+          <div class="scard" data-sid="espresso-crawl">
             <span class="semoji">☕️</span>
             <div class="smid"><b>The Espresso Crawl</b><span>The coffee bars worth crossing a bridge for.</span>
               <span class="sprog"><i></i><em>0/24</em></span></div>
             <span class="schev">&#8250;</span>
           </div>
-          <div class="scard">
+          <div class="scard" data-sid="ramen-circuit">
             <span class="semoji">🍜</span>
             <div class="smid"><b>Ramen Circuit</b><span>Broth pilgrimages, tonkotsu to shoyu.</span>
               <span class="sprog"><i></i><em>0/24</em></span></div>
             <span class="schev">&#8250;</span>
           </div>
-          <div class="scard">
+          <div class="scard" data-sid="bagel-royalty">
             <span class="semoji">🥯</span>
             <div class="smid"><b>Bagel Royalty</b><span>Hand-rolled, kettle-boiled, argued-over.</span>
               <span class="sprog"><i></i><em>0/24</em></span></div>
             <span class="schev">&#8250;</span>
           </div>
-          <div class="scard">
+          <div class="scard" data-sid="taco-temples">
             <span class="semoji">🌮</span>
             <div class="smid"><b>Taco Temples</b><span>From birria windows to al pastor counters.</span>
               <span class="sprog"><i></i><em>0/26</em></span></div>
             <span class="schev">&#8250;</span>
           </div>
-          <div class="scard">
+          <div class="scard" data-sid="dumpling-trail">
             <span class="semoji">🥟</span>
             <div class="smid"><b>Dumpling Trail</b><span>Soup dumplings, potstickers, dim sum carts.</span>
               <span class="sprog"><i></i><em>0/27</em></span></div>
@@ -625,110 +630,14 @@
           </div></div>
           </div>
           <div class="pv off" id="viewPizza">
-            <img class="mapstrip" src="assets/map_pizza.png" alt="">
+            <div class="mapwrap" style="height:42%"><img class="mappan" src="assets/map_pizza.png" alt=""></div>
             <span class="chip backchip" id="pizzaBack">&#8249;</span>
             <div class="sheet plist-sheet" data-sheet>
               <div class="grabber dark"></div>
-              <p class="ptitle">&#127829; The Pizza Canon</p>
-              <p class="ptag">The slices New York argues about. Settle it yourself.</p>
-              <p class="pcount"><b id="pizzaCount">0</b> of 28 collected &mdash; tap to check off</p>
-              <div class="plist">
-            <div class="prow">
-              <span class="prank">1</span>
-              <div class="pmid"><b>Totonno&#x27;s</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.1 &middot; Coney Island</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>White Pizza &middot; 13</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">2</span>
-              <div class="pmid"><b>Di Fara Pizza</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Midwood</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Square Slice &middot; 181</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">3</span>
-              <div class="pmid"><b>F&amp;F Pizzeria</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.5 &middot; Carroll Gardens</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Regular Pizza &middot; 42</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">4</span>
-              <div class="pmid"><b>Lucali</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Carroll Gardens</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Plain Pie &middot; 1,393</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">5</span>
-              <div class="pmid"><b>L&amp;B Spumoni Gardens</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.4 &middot; Brooklyn Heights</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Sicilian Pizza &middot; 93</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">6</span>
-              <div class="pmid"><b>Grimaldi&#x27;s Pizzeria</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Brooklyn Heights</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Margherita Pizza &middot; 174</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">7</span>
-              <div class="pmid"><b>Juliana’s</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Brooklyn Heights</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Margherita Pizza &middot; 398</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">8</span>
-              <div class="pmid"><b>Kesté Pizza e Vino</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Manhattan</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Gluten-Free Pizza &middot; 248</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">9</span>
-              <div class="pmid"><b>Scarr&#x27;s Pizza</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.4 &middot; Manhattan</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Hot Honey &middot; 580</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">10</span>
-              <div class="pmid"><b>Ceres</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.1 &middot; Manhattan</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Cheese Pizza &middot; 118</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">11</span>
-              <div class="pmid"><b>Lombardi&#x27;s</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.2 &middot; Manhattan</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Original Margherita &middot; 278</span>
-              </div>
-              <span class="pcheck"></span>
-            </div>
-            <div class="prow">
-              <span class="prank">12</span>
-              <div class="pmid"><b>Rubirosa</b>
-                <span class="pmeta"><i class="star">&#9733;</i> 4.6 &middot; Manhattan</span>
-                <span class="pdish"><svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"/></svg>Tie Dye Pizza &middot; 596</span>
-              </div>
-              <span class="pcheck"></span>
-            </div></div>
+              <p class="ptitle" id="clTitle"></p>
+              <p class="ptag" id="clTag"></p>
+              <p class="pcount"><b id="pizzaCount">0</b> of <span id="clTotal"></span> collected &mdash; tap to check off</p>
+              <div class="plist" id="clList"></div>
             </div>
           </div>
         </div></div></div>
@@ -843,18 +752,50 @@
         r.style.display = (p === 'all' || r.dataset.price === p) ? '' : 'none');
     }));
 
-  const pcount = document.getElementById('pizzaCount');
-  document.querySelectorAll('.prow').forEach(row =>
-    row.addEventListener('click', () => {
-      if (dragged) return;
-      row.classList.toggle('done');
-      pcount.textContent = document.querySelectorAll('.prow.done').length;
-    }));
-
-  // explorer series phone: list -> pizza checklist -> back
+  // explorer series phone: list -> checklist (6 series) -> back
+  const SERIES_DATA = {"pizza-canon": {"title": "The Pizza Canon", "tag": "The slices New York argues about. Settle it yourself.", "emoji": "🍕", "total": 28, "spots": [{"n": "Totonno's", "b": "Coney Island", "r": 4.1, "d": "White Pizza", "m": 13}, {"n": "Di Fara Pizza", "b": "Midwood", "r": 4.2, "d": "Square Slice", "m": 181}, {"n": "F&F Pizzeria", "b": "Carroll Gardens", "r": 4.5, "d": "Regular Pizza", "m": 42}, {"n": "Lucali", "b": "Carroll Gardens", "r": 4.2, "d": "Plain Pie", "m": 1393}, {"n": "L&B Spumoni Gardens", "b": "Brooklyn Heights", "r": 4.4, "d": "Sicilian Pizza", "m": 93}, {"n": "Grimaldi's Pizzeria", "b": "Brooklyn Heights", "r": 4.2, "d": "Margherita Pizza", "m": 174}, {"n": "Juliana’s", "b": "Brooklyn Heights", "r": 4.6, "d": "Margherita Pizza", "m": 398}, {"n": "Kesté Pizza e Vino", "b": "Manhattan", "r": 4.6, "d": "Gluten-Free Pizza", "m": 248}, {"n": "Scarr's Pizza", "b": "Manhattan", "r": 4.4, "d": "Hot Honey", "m": 580}, {"n": "Ceres", "b": "Manhattan", "r": 4.1, "d": "Cheese Pizza", "m": 118}]}, "espresso-crawl": {"title": "The Espresso Crawl", "tag": "The coffee bars worth crossing a bridge for.", "emoji": "☕️", "total": 24, "spots": [{"n": "Dayglow", "b": "Bushwick", "r": 4.5, "d": "Totoro", "m": 13}, {"n": "SEY Coffee", "b": "Bushwick", "r": 4.6, "d": "Espresso", "m": 58}, {"n": "Devoción", "b": "Williamsburg", "r": 4.5, "d": "Latte", "m": 66}, {"n": "Ninth Street Espresso", "b": "Manhattan", "r": 4.6, "d": "Espresso", "m": 49}, {"n": "Abraço", "b": "Manhattan", "r": 4.2, "d": "Espresso", "m": 91}, {"n": "Hi-Collar", "b": "Manhattan", "r": 4.4, "d": "Omurice", "m": 232}, {"n": "Everyman Espresso", "b": "Manhattan", "r": 4.4, "d": "Espresso", "m": 50}, {"n": "Joe Coffee Company: Waverly", "b": "Manhattan", "r": 4.5, "d": "Espresso", "m": 14}, {"n": "Arcane Estate Coffee", "b": "Manhattan", "r": 4.6, "d": "Pour Over", "m": 22}, {"n": "Caffe Reggio", "b": "Manhattan", "r": 4.3, "d": "Cappuccino", "m": 226}]}, "ramen-circuit": {"title": "Ramen Circuit", "tag": "Broth pilgrimages, tonkotsu to shoyu.", "emoji": "🍜", "total": 24, "spots": [{"n": "Karazishi Botan", "b": "Carroll Gardens", "r": 4.6, "d": "Iron Man", "m": 29}, {"n": "Shinka Ramen & Sake Bar", "b": "Manhattan", "r": 4.5, "d": "Bone Marrow Ramen", "m": 83}, {"n": "Okiboru House of Tsukemen", "b": "Manhattan", "r": 4.5, "d": "Tsukemen", "m": 302}, {"n": "Ramen Ishida", "b": "Manhattan", "r": 4.6, "d": "New Tokyo Style Shoyu Ramen", "m": 174}, {"n": "Mr. Taka Ramen", "b": "Manhattan", "r": 4.5, "d": "Tonkotsu Ramen", "m": 95}, {"n": "Ramen By Ra", "b": "Manhattan", "r": 4.7, "d": "Steak and Egg Ramen", "m": 54}, {"n": "Ivan Ramen", "b": "Manhattan", "r": 4.7, "d": "Chicken Paitan", "m": 346}, {"n": "Nakamura", "b": "Manhattan", "r": 4.4, "d": "Ton Toro Pork", "m": 80}, {"n": "Momofuku Noodle Bar", "b": "Manhattan", "r": 4.5, "d": "Pork Buns", "m": 647}, {"n": "Rockmeisha", "b": "Manhattan", "r": 4.7, "d": "Hakata Ramen", "m": 28}]}, "bagel-royalty": {"title": "Bagel Royalty", "tag": "Hand-rolled, kettle-boiled, argued-over.", "emoji": "🥯", "total": 24, "spots": [{"n": "Kosher Bagel Hole", "b": "Midwood", "r": 4.7, "d": "Bagel with Cream Cheese", "m": 18}, {"n": "Bergen Bagels", "b": "Prospect Heights", "r": 4.0, "d": "Cream Cheese", "m": 40}, {"n": "Shelsky's Of Brooklyn Appetizing and Delicatessen", "b": "Cobble Hill", "r": 4.4, "d": "Lox Bagel", "m": 28}, {"n": "Kossar's Bagels & Bialys", "b": "Manhattan", "r": 4.0, "d": "Bagel Sandwich", "m": 164}, {"n": "Russ & Daughters", "b": "Manhattan", "r": 4.6, "d": "Bagel with Lox and Cream Cheese", "m": 1078}, {"n": "Apollo Bagels", "b": "Manhattan", "r": 4.6, "d": "Salmon Bagel", "m": 166}, {"n": "Tompkins Square Bagels | East Village Bagels", "b": "Manhattan", "r": 4.5, "d": "Everything Bagel", "m": 67}, {"n": "Popup Bagels", "b": "Manhattan", "r": 4.5, "d": "Cream Cheese", "m": 223}, {"n": "Murray's Bagels", "b": "Manhattan", "r": 4.1, "d": "Everything Bagel", "m": 39}, {"n": "Brooklyn Bagel & Coffee Company", "b": "Manhattan", "r": 4.6, "d": "Cream Cheese", "m": 214}]}, "taco-temples": {"title": "Taco Temples", "tag": "From birria windows to al pastor counters.", "emoji": "🌮", "total": 26, "spots": [{"n": "Tacos Matamoros", "b": "Sunset Park", "r": 4.0, "d": "Margarita", "m": 33}, {"n": "Tacos El Bronco", "b": "Sunset Park", "r": 4.6, "d": "Taco Al Pastor", "m": 57}, {"n": "La Contenta", "b": "Manhattan", "r": 4.6, "d": "Guacamole", "m": 44}, {"n": "Birria LES", "b": "Manhattan", "r": 4.6, "d": "Birria Tacos", "m": 424}, {"n": "Beto’s Carnitas & Guisados", "b": "Manhattan", "r": 5.0, "d": "6 Tortillas", "m": 14}, {"n": "Carnitas Ramirez", "b": "Manhattan", "r": 4.8, "d": "Pork Belly Taco", "m": 27}, {"n": "Empellon Al Pastor", "b": "Manhattan", "r": 4.1, "d": "Al Pastor Taco", "m": 40}, {"n": "Tacos Domingo - East Village", "b": "Manhattan", "r": 4.5, "d": "Carne Asada Taco", "m": 37}, {"n": "Taqueria St. Marks Place", "b": "Manhattan", "r": 4.6, "d": "Margarita", "m": 111}, {"n": "DORADO Tacos & Quesadillas", "b": "Manhattan", "r": 4.5, "d": "Baja Fish Taco", "m": 124}]}, "dumpling-trail": {"title": "Dumpling Trail", "tag": "Soup dumplings, potstickers, dim sum carts.", "emoji": "🥟", "total": 27, "spots": [{"n": "Liu's Shanghai 聚香園", "b": "Bath Beach", "r": 4.5, "d": "Pork Soup Dumpling", "m": 85}, {"n": "Jin Mei Dumpling", "b": "Manhattan", "r": 4.7, "d": "Pork and Chive Dumplings", "m": 574}, {"n": "Golden Unicorn", "b": "Manhattan", "r": 4.0, "d": "Piggy Buns", "m": 71}, {"n": "North Dumpling 北方锅贴", "b": "Manhattan", "r": 4.7, "d": "Pork and Chive Dumplings", "m": 44}, {"n": "Nom Wah Tea Parlor", "b": "Manhattan", "r": 4.2, "d": "Shanghainese Soup Dumplings", "m": 214}, {"n": "Shanghai 21", "b": "Manhattan", "r": 4.5, "d": "Soup Dumplings", "m": 484}, {"n": "Fried Dumpling", "b": "Manhattan", "r": 4.2, "d": "Fried Dumpling", "m": 651}, {"n": "Deluxe Green Bo", "b": "Manhattan", "r": 4.3, "d": "Soup Dumplings", "m": 392}, {"n": "Joe's Shanghai", "b": "Manhattan", "r": 4.2, "d": "Soup Dumplings", "m": 1831}, {"n": "Jing Fong", "b": "Manhattan", "r": 3.7, "d": "Har Gow", "m": 25}]}};
+  const CROWN = '<svg viewBox="0 0 40 34" class="hcrown"><path d="M4 28 L8 8 L15 17 L20 4 L25 17 L32 8 L36 28 Z" fill="#E9B949"></path></svg>';
   const vp = document.getElementById('viewPizza');
-  document.querySelector('.scard.snav')?.addEventListener('click', () => { if (!dragged) vp.classList.remove('off'); });
-  document.getElementById('pizzaBack')?.addEventListener('click', () => vp.classList.add('off'));
+  const clList = document.getElementById('clList');
+  const pcount = document.getElementById('pizzaCount');
+  function openSeries(sid) {
+    const d = SERIES_DATA[sid]; if (!d) return;
+    document.getElementById('clTitle').textContent = d.emoji + ' ' + d.title;
+    document.getElementById('clTag').textContent = d.tag;
+    document.getElementById('clTotal').textContent = d.total;
+    pcount.textContent = 0;
+    clList.innerHTML = d.spots.map((sp, i) => `
+      <div class="prow"><span class="prank">${i + 1}</span>
+        <div class="pmid"><b>${sp.n}</b>
+          <span class="pmeta"><i class="star">&#9733;</i> ${sp.r} &middot; ${sp.b}</span>
+          <span class="pdish">${CROWN}${sp.d}${sp.m ? ' &middot; ' + sp.m.toLocaleString() : ''}</span></div>
+        <span class="pcheck"></span></div>`).join('');
+    vp.classList.remove('off');
+    vp.querySelector('[data-sheet]').scrollTop = 0;
+  }
+  document.querySelectorAll('.scard[data-sid]').forEach(c =>
+    c.addEventListener('click', () => { if (!dragged) openSeries(c.dataset.sid); }));
+  document.getElementById('pizzaBack').addEventListener('click', () => vp.classList.add('off'));
+  clList.addEventListener('click', e => {
+    const row = e.target.closest('.prow');
+    if (!row || dragged) return;
+    row.classList.toggle('done');
+    pcount.textContent = clList.querySelectorAll('.prow.done').length;
+  });
+
+  // pannable maps (home drawer + checklist backdrop)
+  document.querySelectorAll('.mapwrap').forEach(w => {
+    const img = w.querySelector('.mappan');
+    let active = false, sx = 0, sy = 0, ox = 0, oy = 0;
+    const apply = () => {
+      ox = Math.min(0, Math.max(w.clientWidth - img.offsetWidth, ox));
+      oy = Math.min(0, Math.max(w.clientHeight - img.offsetHeight, oy));
+      img.style.transform = `translate(${ox}px, ${oy}px)`;
+    };
+    w.addEventListener('pointerdown', e => { active = true; sx = e.clientX - ox; sy = e.clientY - oy; });
+    addEventListener('pointermove', e => { if (!active) return; ox = e.clientX - sx; oy = e.clientY - sy; apply(); });
+    addEventListener('pointerup', () => active = false);
+  });
 </script>
 </body>
 </html>
